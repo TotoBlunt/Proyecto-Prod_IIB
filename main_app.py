@@ -177,7 +177,7 @@ if upload_file is not None:
                     prediction = modelo.predict(input_data)
 
                     # Mostrar el resultado de la predicción
-                    st.write(f'La predicción del modelo es: {prediction[0]:.2f}')  # Formato de dos decimales
+                    st.write(f'La predicción del modelo para Peso Final es : {prediction[0]:.2f} kg')  # Formato de dos decimales
                 else:
                     st.error("Por favor, ingresa valores válidos para todas las características.")
 
