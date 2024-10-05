@@ -155,21 +155,33 @@ if upload_file is not None:
         st.write(f"#### La varianza de los valores es:  {varianza:.4f}")
 
 
-        # Guardar el modelo como archivo .pkl en una ubicación específica
-        if st.button("Guardar Modelo como .pkl"):
-            path = 'modelo.pkl'  # Puedes usar os.path.join(os.getcwd(), 'modelo.pkl') si prefieres
-            with open(path, 'wb') as f:
-                pickle.dump(modelo, f)
-            st.success(f"Modelo guardado como '{path}'")
-            st.write("Directorio actual:", os.getcwd())  # Muestra el directorio actual
-            st.write("Archivos en el directorio:", os.listdir(os.getcwd()))  # Muestra los archivos en el directorio
+        # Selección de página
+        page = st.selectbox("Selecciona una opción", ["Predicción"])
 
+        if page == "Predicción":
+            st.title("Aplicación de Prediccion")
+             # Entradas de datos para las características
+            feature_1 = st.number_input('Ingresa el valor para Feature 1')
+            feature_2 = st.number_input('Ingresa el valor para Feature 2')
+            feature_3 = st.number_input('Ingresa el valor para Feature 3')
+            feature_4 = st.number_input('Ingresa el valor para Feature 4')
+            feature_5 = st.number_input('Ingresa el valor para Feature 5')
 
+            # Botón para realizar la predicción
+            if st.button('Realizar Predicción'):
+                # Validar que las entradas no estén vacías
+                if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
+                    # Crear el array con los datos de entrada
+                    input_data = np.array([[feature_1, feature_2, feature_3,feature_4,feature_5]])
 
-        # Enlace para ir a la aplicación de predicción
-        if st.button("Ir a la Aplicación de Predicción"):
-            prediction_app_url = "https://proyecto-idl3-dlko8p28cnsvqhylscapmq.streamlit.app/"  # Cambia esto a la URL correcta
-            st.markdown(f'<a href="{prediction_app_url}" target="_blank">Abrir Aplicación de Predicción</a>', unsafe_allow_html=True)
+                    # Hacer la predicción con el modelo
+                    prediction = modelo.predict(input_data)
+
+                    # Mostrar el resultado de la predicción
+                    st.write(f'La predicción del modelo es: {prediction[0]:.2f}')  # Formato de dos decimales
+                else:
+                    st.error("Por favor, ingresa valores válidos para todas las características.")
+
                         
     except FileNotFoundError as e:
         st.error(f"Error en el proceso: {e}")
