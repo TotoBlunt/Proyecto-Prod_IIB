@@ -158,11 +158,10 @@ if upload_file is not None:
             pickle.dump(modelo, file)
 
         st.write("Modelo guardado como 'voting_regressor_model.pkl'")
-        # Botón para cargar la aplicación de predicción
-        if st.button("Ir a Predicción"):
-            # Redirigir a la aplicación de predicción
-            st.session_state.go_to_prediction = True
-            st.rerun()  # Recargar la aplicación para aplicar el cambio
+        # Enlace para ir a la aplicación de predicción
+        if st.button("Ir a la Aplicación de Predicción"):
+            prediction_app_url = "https://proyecto-idl3-dlko8p28cnsvqhylscapmq.streamlit.app/"  # Cambia esto a la URL correcta
+            st.markdown(f'<a href="{prediction_app_url}" target="_blank">Abrir Aplicación de Predicción</a>', unsafe_allow_html=True)
                         
     except FileNotFoundError as e:
         st.error(f"Error en el proceso: {e}")
