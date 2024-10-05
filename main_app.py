@@ -158,11 +158,28 @@ if upload_file is not None:
             pickle.dump(modelo, file)
 
         st.write("Modelo guardado como 'voting_regressor_model.pkl'")
-        # Botón para cargar la aplicación de predicción
-        if st.button("Ir a Predicción"):
-            # Redirigir a la aplicación de predicción
-            st.session_state.go_to_prediction = True
-            st.experimental_rerun()  # Recargar la aplicación para aplicar el cambio
+        # Función para redirigir a la aplicación de predicción
+        def go_to_prediction():
+            st.session_state.page = "prediction"  # Cambia el estado de la página
+            st.experimental_rerun()  # Reinicia la aplicación para reflejar el cambio
+
+        # Estado de la página
+        if 'page' not in st.session_state:
+            st.session_state.page = "main"  # Página inicial
+
+        # Control de navegación
+        if st.session_state.page == "main":
+            st.title("Aplicación Principal")
+            if st.button("Ir a Predicción"):
+                go_to_prediction()
+
+        elif st.session_state.page == "prediction":
+            # Aquí puedes importar y ejecutar el archivo prediction_app.py
+            st.title("Predicción")
+            # Puedes añadir el código de predicción aquí
+            if st.button("Volver a la Aplicación Principal"):
+                st.session_state.page = "main"
+                st.experimental_rerun()
                         
     except FileNotFoundError as e:
         st.error(f"Error en el proceso: {e}")
