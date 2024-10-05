@@ -157,7 +157,7 @@ if upload_file is not None:
         # Guardar el modelo en un archivo .pkl
         st.write("Directorio actual:", os.getcwd())
         if st.button("Guardar Modelo como .pkl"):
-            with open('voting_regressor_model.pkl', 'wb') as file:
+            with open(os.path.join(os.getcwd(),'voting_regressor_model.pkl'), 'wb') as file:
                 pickle.dump(modelo, file)
             st.success("Modelo guardado como 'voting_regressor_model.pkl'")
         # Verificar si el archivo se ha guardado
