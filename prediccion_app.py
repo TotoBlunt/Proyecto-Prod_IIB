@@ -31,7 +31,8 @@ if os.path.exists('voting_regressor_model.pkl'):
             st.write(f'La predicción del modelo es: {prediction[0]:.2f}')  # Formato de dos decimales
         else:
             st.error("Por favor, ingresa valores válidos para todas las características.")
-
+else:
+    st.error('El archivo no se encuentra')
 
     # Botón para volver a la aplicación principal
     if st.button('Volver a la Aplicación Principal'):
