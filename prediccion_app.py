@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
+import os
 
 st.title("Aplicación de Predicción con VoitingRegressor")
 
