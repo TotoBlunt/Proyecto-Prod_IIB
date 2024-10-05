@@ -26,7 +26,7 @@ if os.path.exists('voting_regressor_model.pkl'):
             input_data = np.array([[feature_1, feature_2, feature_3,feature_4,feature_5]])
 
             # Hacer la predicción con el modelo
-            prediction = model.predict(input_data)
+            prediction = modelo_cargado.predict(input_data)
 
             # Mostrar el resultado de la predicción
             st.write(f'La predicción del modelo es: {prediction[0]:.2f}')  # Formato de dos decimales
