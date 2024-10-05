@@ -155,6 +155,7 @@ if upload_file is not None:
         st.write(f"#### La varianza de los valores es:  {varianza:.4f}")
 
         # Guardar el modelo en un archivo .pkl
+        st.write("Directorio actual:", os.getcwd())
         if st.button("Guardar Modelo como .pkl"):
             with open('voting_regressor_model.pkl', 'wb') as file:
                 pickle.dump(modelo, file)
