@@ -156,11 +156,14 @@ if upload_file is not None:
 
 
         # Guardar el modelo como archivo .pkl en una ubicación específica
-        path = os.path.join(os.getcwd(), 'modelo.pkl')
         if st.button("Guardar Modelo como .pkl"):
+            path = 'modelo.pkl'  # Puedes usar os.path.join(os.getcwd(), 'modelo.pkl') si prefieres
             with open(path, 'wb') as f:
                 pickle.dump(modelo, f)
             st.success(f"Modelo guardado como '{path}'")
+            st.write("Directorio actual:", os.getcwd())  # Muestra el directorio actual
+            st.write("Archivos en el directorio:", os.listdir(os.getcwd()))  # Muestra los archivos en el directorio
+
 
 
         # Enlace para ir a la aplicación de predicción
