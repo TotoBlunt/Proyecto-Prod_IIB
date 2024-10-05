@@ -155,16 +155,15 @@ if upload_file is not None:
         st.write(f"#### La varianza de los valores es:  {varianza:.4f}")
 
         # Guardar el modelo en un archivo .pkl
-        st.write("Directorio actual:", os.getcwd())
         if st.button("Guardar Modelo como .pkl"):
             with open(os.path.join(os.getcwd(),'voting_regressor_model.pkl'), 'wb') as file:
                 pickle.dump(modelo, file)
             st.success("Modelo guardado como 'voting_regressor_model.pkl'")
         # Verificar si el archivo se ha guardado
-        if os.path.exists('voting_regressor_model.pkl'):
-            st.write("El archivo 'voting_regressor_model.pkl' se ha guardado correctamente.")
-        else:
-            st.error("No se pudo guardar el archivo 'voting_regressor_model.pkl'.")
+            if os.path.exists('voting_regressor_model.pkl'):
+                st.write("El archivo 'voting_regressor_model.pkl' se ha guardado correctamente.")
+            else:
+                st.error("No se pudo guardar el archivo 'voting_regressor_model.pkl'.")
 
         # Enlace para ir a la aplicación de predicción
         if st.button("Ir a la Aplicación de Predicción"):
