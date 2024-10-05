@@ -13,8 +13,7 @@ import matplotlib.pyplot as plt
 import openpyxl
 import pandas as pd 
 import streamlit as st
-import pickle
-import os
+import numpy as np
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit")
@@ -156,16 +155,16 @@ if upload_file is not None:
 
 
         # Selección de página
-        page = st.selectbox("Selecciona una opción", ["Predicción"])
+        page = st.selectbox("Selecciona una opción", ["Predicción",'Otros'])
 
         if page == "Predicción":
             st.title("Aplicación de Prediccion")
              # Entradas de datos para las características
-            feature_1 = st.number_input('Ingresa el valor para Feature 1')
-            feature_2 = st.number_input('Ingresa el valor para Feature 2')
-            feature_3 = st.number_input('Ingresa el valor para Feature 3')
-            feature_4 = st.number_input('Ingresa el valor para Feature 4')
-            feature_5 = st.number_input('Ingresa el valor para Feature 5')
+            feature_1 = st.number_input('Ingresa el valor para PesoSem4')
+            feature_2 = st.number_input('Ingresa el valor para Agua')
+            feature_3 = st.number_input('Ingresa el valor para PesoSem3')
+            feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado')
+            feature_5 = st.number_input('Ingresa el valor para MortStd')
 
             # Botón para realizar la predicción
             if st.button('Realizar Predicción'):
