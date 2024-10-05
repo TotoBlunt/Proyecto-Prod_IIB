@@ -14,6 +14,7 @@ import openpyxl
 import pandas as pd 
 import streamlit as st
 import pickle
+import os
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit")
