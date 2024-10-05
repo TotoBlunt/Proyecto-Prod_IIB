@@ -154,10 +154,11 @@ if upload_file is not None:
         st.write(f"#### La varianza de los valores es:  {varianza:.4f}")
 
         # Guardar el modelo en un archivo .pkl
-        with open('voting_regressor_model.pkl', 'wb') as file:
-            pickle.dump(modelo, file)
+        if st.button("Guardar Modelo como .pkl"):
+            with open('voting_regressor_model.pkl', 'wb') as file:
+                pickle.dump(modelo, file)
+            st.success("Modelo guardado como 'voting_regressor_model.pkl'")
 
-        st.write("Modelo guardado como 'voting_regressor_model.pkl'")
         # Enlace para ir a la aplicación de predicción
         if st.button("Ir a la Aplicación de Predicción"):
             prediction_app_url = "https://proyecto-idl3-dlko8p28cnsvqhylscapmq.streamlit.app/"  # Cambia esto a la URL correcta
