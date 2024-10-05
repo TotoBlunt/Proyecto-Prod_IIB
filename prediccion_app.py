@@ -38,4 +38,4 @@ else:
     # Botón para volver a la aplicación principal
     if st.button('Volver a la Aplicación Principal'):
         st.session_state.go_to_prediction = False
-        st.experimental_rerun()  # Recargar la aplicación para volver al estado anterior
+        st.rerun()  # Recargar la aplicación para volver al estado anterior
