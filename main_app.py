@@ -161,10 +161,10 @@ if upload_file is not None:
                 pickle.dump(modelo, file)
             st.success("Modelo guardado como 'voting_regressor_model.pkl'")
         # Verificar si el archivo se ha guardado
-        if os.path.exists('modelo.pkl'):
-            st.write("El archivo 'modelo.pkl' se ha guardado correctamente.")
+        if os.path.exists('voting_regressor_model.pkl'):
+            st.write("El archivo 'voting_regressor_model.pkl' se ha guardado correctamente.")
         else:
-            st.error("No se pudo guardar el archivo 'modelo.pkl'.")
+            st.error("No se pudo guardar el archivo 'voting_regressor_model.pkl'.")
 
         # Enlace para ir a la aplicación de predicción
         if st.button("Ir a la Aplicación de Predicción"):
