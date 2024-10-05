@@ -7,7 +7,7 @@ st.title("Aplicación de Predicción con VoitingRegressor")
 # Verificar si el archivo modelo.pkl existe
 if os.path.exists('voting_regressor_model.pkl'):
     # Cargar el modelo desde el archivo .pkl
-    with open('modelo.pkl', 'rb') as f:
+    with open('voting_regressor_model.pkl', 'rb') as f:
         modelo_cargado = pickle.load(f)
 
     # Entradas de datos para las características
