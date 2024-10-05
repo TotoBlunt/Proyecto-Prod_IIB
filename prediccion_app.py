@@ -2,14 +2,13 @@ import streamlit as st
 import pickle
 import numpy as np
 
-# Cargar el modelo solo si se ha establecido el estado
-if 'go_to_prediction' in st.session_state and st.session_state.go_to_prediction:
-    # Título de la aplicación de predicción
-    st.title("Predicción con VotingRegressor")
+st.title("Aplicación de Predicción con VoitingRegressor")
 
-    # Cargar el modelo
-    with open('voting_regressor_model.pkl', 'rb') as file:
-        model = pickle.load(file)
+# Verificar si el archivo modelo.pkl existe
+if os.path.exists('voting_regressor_model.pkl'):
+    # Cargar el modelo desde el archivo .pkl
+    with open('modelo.pkl', 'rb') as f:
+        modelo_cargado = pickle.load(f)
 
     # Entradas de datos para las características
     feature_1 = st.number_input('Ingresa el valor para Feature 1')
