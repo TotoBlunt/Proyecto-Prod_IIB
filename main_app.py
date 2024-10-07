@@ -104,10 +104,10 @@ if upload_file is not None:
 
         
         #Crear una lista de modelos
-        models = [ ("decision_tree", DecisionTreeRegressor(max_depth=5)),
+        models = [ ("decision_tree", DecisionTreeRegressor(max_depth=5,random_state=42)),
          ("linear_regression",LinearRegression()), 
          ("k_neighbors",KNeighborsRegressor(n_neighbors=5,weights='distance')),
-         ("random_forest",RandomForestRegressor(n_estimators=100,min_samples_split=3,max_depth=9)),
+         ("random_forest",RandomForestRegressor(n_estimators=100,min_samples_split=3,max_depth=9,random_state=42)),
          ('gradient_booster',GradientBoostingRegressor(n_estimators=100))] #de los 5 vecinos sacara deciciones estadisticas
 
         # Crear un modelo de ensamble con los modelos anteriores el metodo combina las predicciones de varios modelos 
