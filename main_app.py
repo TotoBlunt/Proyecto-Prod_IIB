@@ -106,7 +106,7 @@ if upload_file is not None:
         #Crear una lista de modelos
         models = [ ("decision_tree", DecisionTreeRegressor(max_depth=5,random_state=42)),
          ("linear_regression",LinearRegression()), 
-         ("k_neighbors",KNeighborsRegressor(n_neighbors=5,weights='distance',random_state=42)),
+         ("k_neighbors",KNeighborsRegressor(n_neighbors=5,weights='distance')),
          ("random_forest",RandomForestRegressor(n_estimators=100,min_samples_split=3,max_depth=9,random_state=42)),
          ('gradient_booster',GradientBoostingRegressor(n_estimators=100,random_state=42))] #de los 5 vecinos sacara deciciones estadisticas
 
