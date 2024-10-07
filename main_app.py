@@ -107,8 +107,8 @@ if upload_file is not None:
         models = [ ("decision_tree", DecisionTreeRegressor(max_depth=5,random_state=42)),
          ("linear_regression",LinearRegression()), 
          ("k_neighbors",KNeighborsRegressor(n_neighbors=5,weights='distance')),
-         ("random_forest",RandomForestRegressor(n_estimators=100,min_samples_split=3,max_depth=9,random_state=42)),
-         ('gradient_booster',GradientBoostingRegressor(n_estimators=100,random_state=42))] #de los 5 vecinos sacara deciciones estadisticas
+         ("random_forest",RandomForestRegressor(n_estimators=10,min_samples_split=3,max_depth=6,random_state=42)),
+         ('gradient_booster',GradientBoostingRegressor(n_estimators=10,random_state=42))] #de los 5 vecinos sacara deciciones estadisticas
 
         # Crear un modelo de ensamble con los modelos anteriores el metodo combina las predicciones de varios modelos 
         modelo = VotingRegressor(models)
@@ -160,11 +160,11 @@ if upload_file is not None:
         elif page == "Predicción":
             st.title("Aplicación de Prediccion")
              # Entradas de datos para las características
-            feature_1 = st.number_input('Ingresa el valor para PesoSem4',format="%.4f")
-            feature_2 = st.number_input('Ingresa el valor para Agua',format="%.4f")
-            feature_3 = st.number_input('Ingresa el valor para PesoSem3',format="%.4f")
-            feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado',format="%.4f")
-            feature_5 = st.number_input('Ingresa el valor para MortStd',format="%.4f")
+            feature_1 = st.number_input('Ingresa el valor para PesoSem4',format="%.3f")
+            feature_2 = st.number_input('Ingresa el valor para Agua',format="%.3f")
+            feature_3 = st.number_input('Ingresa el valor para PesoSem3',format="%.3f")
+            feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado',format="%.3f")
+            feature_5 = st.number_input('Ingresa el valor para MortStd',format="%.3f")
 
             # Botón para realizar la predicción
             if st.button('Realizar Predicción'):
