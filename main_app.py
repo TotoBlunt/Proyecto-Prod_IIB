@@ -65,7 +65,7 @@ if upload_file is not None:
         model.fit(X_train, y_train)
 
 
-        #st.write(classification_report(y_test, y_pred))
+        st.write(classification_report(y_test, y_pred))
 
         # Importancia de las características
         importances = model.feature_importances_
@@ -123,7 +123,7 @@ if upload_file is not None:
         df['Peso Prom Final Predicho'] = modelo.predict(x_model)
         
         # Selección de página
-        page = st.selectbox("Selecciona una opción", ["Predicción",'Grafico de Comparacion en la Prediccion','Metricas de Evaluacion del Modelo'])
+        page = st.selectbox("### Selecciona una opción", ["Predicción",'Grafico de Comparacion en la Prediccion','Metricas de Evaluacion del Modelo'])
         
         if page == 'Metricas de Evaluacion del Modelo':
             # Calcular métricas de evaluación
