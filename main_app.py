@@ -66,7 +66,7 @@ if upload_file is not None:
         y_pred = model.predict(X_test)
 
         st.write('### Metrica de Evaluacion para el Modelo de Importancias')
-        st.write(classification_report(y_test, y_pred))
+        st.write(f'Accuracy: {accuracy_score(y_test, y_pred)}')
 
         # Importancia de las características
         importances = model.feature_importances_
