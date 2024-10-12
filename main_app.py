@@ -65,9 +65,9 @@ if upload_file is not None:
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
 
-        st.write('### Metrica de Evaluacion para el Modelo de Importancias')
+        st.write('### Metrica de Evaluacion para el Modelo RandomForestClasifier de Importancias')
         st.write(f'Accuracy: {accuracy_score(y_test, y_pred):.2f}')
-        st.write(f'Promedio de la Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy').mean()}')
+        st.write(f'Promedio de la Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy').mean():.2f}')
 
         # Importancia de las características
         importances = model.feature_importances_
