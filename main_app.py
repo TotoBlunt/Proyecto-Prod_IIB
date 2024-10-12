@@ -66,8 +66,8 @@ if upload_file is not None:
         y_pred = model.predict(X_test)
 
         st.write('### Metrica de Evaluacion para el Modelo RandomForestClasifier de Importancias')
-        st.write(f'Accuracy: {accuracy_score(y_test, y_pred):.2f}')
-        st.write(f'Promedio de la Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy').mean():.2f}')
+        st.write(f'#### Accuracy: {accuracy_score(y_test, y_pred):.4f}')
+        st.write(f'#### Promedio de la Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy').mean():.4f}')
 
         # Importancia de las características
         importances = model.feature_importances_
@@ -129,15 +129,14 @@ if upload_file is not None:
         
         if page == 'Metricas de Evaluacion del Modelo':
             # Calcular métricas de evaluación
-            st.write('### Metricas de Evaluacion del "Modelo:\n')
+            st.write('### Metricas de Evaluacion del "Modelo Final(VotingRegresor)":\n')
             mse = mean_squared_error(y_test_model, y_pred_model)
             r2 = r2_score(y_test_model, y_pred_model)
             mae = mean_absolute_error(y_test_model,y_pred_model)
             st.write(f'#### Coeficiente de determinacion: {r2:.4f}')
             st.write(f'#### Error cuadratico medio: {mse:.4f}')
             st.write(f'#### Error absoluto medio: {mae:.4f}')
-            from sklearn.model_selection import cross_val_score
-
+        #Validacion Cruzada del modelo Voting
             r2_scores = cross_val_score(modelo, x_train_model, y_train_model, cv=5, scoring='r2')
             st.write(f'#### R² promedio en validación cruzada: {r2_scores.mean():.4f}')
         elif page == 'Grafico de Comparacion en la Prediccion':
