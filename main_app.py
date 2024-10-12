@@ -16,7 +16,7 @@ import streamlit as st
 import numpy as np
 
 #Titulo para el app
-st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit")
+st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
 
 #Subir archivo de excel
 upload_file = st.file_uploader('Sube un archivo Excel',type=['xlsx'])
