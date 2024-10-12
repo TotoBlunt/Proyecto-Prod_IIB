@@ -67,7 +67,7 @@ if upload_file is not None:
 
         st.write('### Metrica de Evaluacion para el Modelo de Importancias')
         st.write(f'Accuracy: {accuracy_score(y_test, y_pred):.2f}')
-        st.write(f'Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy')}')
+        st.write(f'Promedio de la Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy').mean()}')
 
         # Importancia de las características
         importances = model.feature_importances_
