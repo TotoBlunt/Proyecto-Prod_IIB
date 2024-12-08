@@ -14,7 +14,8 @@ def get_supabase_credentials():
 supabase_url, supabase_key = get_supabase_credentials()
 #obtener credenciales
 
-def crear_cliente():
+def crear_cliente(supabase_url, supabase_key):
     return create_client(supabase_url,supabase_key)
+
 
 

@@ -2,6 +2,7 @@ from supabase_connector import crear_cliente
 import os
 client = crear_cliente()
 
+
 def crear_prediccion(predicction_data):
     data = {
         'peso_sem3' : predicction_data['feature_3'],
