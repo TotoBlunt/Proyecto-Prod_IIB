@@ -202,13 +202,13 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
             data = {
-                    'feature_1':[feature_1],
-                    'feature_2':[feature_2],
-                    'feature_3':[feature_3],
-                    'feature_4':[feature_4],
-                    'feature_5':[feature_5],
-                    'created_at':[created_at],
-                    'prediction':[prediction]
+                    'feature_1':feature_1,
+                    'feature_2':feature_2,
+                    'feature_3':feature_3,
+                    'feature_4':feature_4,
+                    'feature_5':feature_5,
+                    'created_at':created_at,
+                    'prediction':prediction
                 }
-            df_data_predictions = pd.Dataframe(data)
-            st.write(df_data_predictions)
+            data_to_insert = [data]
+    return data_to_insert
