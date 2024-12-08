@@ -11,5 +11,4 @@ modelo,y_pred_model,y_test_model,x_train_model,y_train_model = modelo_ensemble(t
 data_insert = menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_model)
 
 #Realizar el CRUD 
-if __name__ == "__main__":
-    main_menu()
+main_menu()
