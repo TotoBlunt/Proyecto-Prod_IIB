@@ -1,5 +1,5 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones
-#from CRUD_supabase import crear_prediccion,read_prediccion,update_prediccion,delete_prediccion
+from CRUD_supabase import crear_prediccion,read_prediccion,update_prediccion,delete_prediccion
 import streamlit as st
 
 #Titulo para el app

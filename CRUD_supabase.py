@@ -1,5 +1,5 @@
 from supabase_connector import crear_cliente
-
+import os
 client = crear_cliente()
 
 def crear_prediccion(predicction_data):

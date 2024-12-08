@@ -1,12 +1,11 @@
 from supabase import create_client
-import pandas as pd
 import os
 
 #Se realizo al creacion de secrets en github para la gestion de credenciales de supabase
 def get_supabase_credentials():
     """Obtiene las credenciales de Supabase desde las variables de entorno."""
-    supabase_url = os.environ.get('SUPABASE_URL')
-    supabase_key = os.environ.get('SUPABASE_KEY')
+    supabase_url = os.getenv('SUPABASE_url')
+    supabase_key = os.getenv('SUPABASE_key')
 
     if not supabase_url or not supabase_key:
         raise ValueError("Las credenciales de Supabase no están configuradas.")

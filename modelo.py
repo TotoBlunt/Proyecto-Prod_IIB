@@ -195,10 +195,10 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
 
                     # Hacer la predicción con el modelo
                     prediction = modelo.predict(input_data)
-                    prediction = round(prediction[0],2)
+                    prediction = round(prediction[0],2) # Formato de dos decimales
 
                     # Mostrar el resultado de la predicción
-                    st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')  # Formato de dos decimales
+                    st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')  
                 else:
                     st.error("### Por favor, ingresa valores válidos para todas las características.")
 
