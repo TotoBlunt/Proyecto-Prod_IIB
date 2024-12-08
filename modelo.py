@@ -138,7 +138,7 @@ def modelo_ensemble(top5,df):
         y_pred_model = modelo.predict(x_test_model)
 
         #Crear una nueva colmuna en el df
-        #df['Peso Prom Final Predicho'] = modelo.predict(x_model)
+        df['Peso Prom Final Predicho'] = modelo.predict(x_model)
         return modelo,y_pred_model,y_test_model
         
 def menu_opciones(modelo,y_pred_model,y_test_model):
