@@ -215,4 +215,3 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
 
-    return data_to_insert

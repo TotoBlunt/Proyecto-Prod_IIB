@@ -1,13 +1,13 @@
 from supabase_connector import crear_cliente
 import os
 import streamlit as st
+
 client = crear_cliente()
 
 
 def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
-    if st.button('Guardar'):
-        data = {
+    data = {
             'peso_sem3' : predicction_data['feature_3'],
             'peso_sem4' : predicction_data['feature_1'],
             'agua' : predicction_data['feature_2'],
@@ -16,9 +16,9 @@ def crear_prediccion(predicction_data):
             'created_at' : predicction_data['created_at']
         }
 
-        response = client.table('datos_predicciones').insert(data).execute()
-        st.success('Registro Creado con Exito')
-    return response
+    response = client.table('datos_predicciones').insert(data).execute()
+    st.success('Registro Creado con Exito')
+    
 
 def read_prediccion():
     st.subheader('Leer Registro')
