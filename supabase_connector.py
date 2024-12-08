@@ -20,7 +20,7 @@ def cargar_credenciales():
 supabase_url, supabase_key = cargar_credenciales()
 #obtener credenciales
 
-def crear_cliente(supabase_url, supabase_key):
+def crear_cliente():
     return create_client(supabase_url,supabase_key)
 
 
