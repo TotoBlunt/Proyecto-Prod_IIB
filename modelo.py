@@ -15,6 +15,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 from datetime import datetime
+from CRUD_supabase import crear_prediccion
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
@@ -211,4 +212,7 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
                     'prediction':prediction
                 }
             data_to_insert = [data]
+        elif st.button('Guardar Datos'):
+            crear_prediccion(data_to_insert)
+
     return data_to_insert
