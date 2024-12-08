@@ -2,7 +2,7 @@ from supabase import create_client
 import toml
 import os
 
-#Se realizo al creacion de secrets en github para la gestion de credenciales de supabase
+#Se realizo al creacion de secrets en github y streamlit para la gestion de credenciales de supabase
 def get_supabase_credentials():
     """Obtiene las credenciales de Supabase desde las variables de entorno."""
     supabase_url = os.getenv('SUPABASE_URL')
@@ -11,13 +11,6 @@ def get_supabase_credentials():
         raise ValueError("Las credenciales de Supabase no están configuradas.")
 
     return supabase_url, supabase_key
-    '''
-
-def cargar_credenciales():
-    with open('secrets.toml', 'r') as f:
-        config = toml.load(f)
-    return config['supabase']['url'], config['supabase']['key']'''
-
 supabase_url, supabase_key = get_supabase_credentials()
 #obtener credenciales
 
