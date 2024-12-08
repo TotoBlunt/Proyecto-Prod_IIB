@@ -7,17 +7,35 @@ client = crear_cliente()
 
 def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
+    # Verificar que predicction_data contenga los datos necesarios
+    required_keys = ['feature_3', 'feature_1', 'feature_2', 'feature_4', 'feature_5', 'created_at']
+    for key in required_keys:
+        if key not in predicction_data:
+            st.error(f"Falta la clave '{key}' en predicction_data")
+            return
+    
+    # Crear el diccionario de datos a insertar
     data = {
-            'peso_sem3' : predicction_data['feature_3'],
-            'peso_sem4' : predicction_data['feature_1'],
-            'agua' : predicction_data['feature_2'],
-            'consumo_acabado' : predicction_data['feature_4'],
-            'mortalidad_std' : predicction_data['feature_5'],
-            'created_at' : predicction_data['created_at']
-        }
-
-    response = client.table('datos_predicciones').insert(data).execute()
-    st.success('Registro Creado con Exito')
+        'peso_sem3': predicction_data['feature_3'],
+        'peso_sem4': predicction_data['feature_1'],
+        'agua': predicction_data['feature_2'],
+        'consumo_acabado': predicction_data['feature_4'],
+        'mortalidad_std': predicction_data['feature_5'],
+        'created_at': predicction_data['created_at']
+    }
+    
+    try:
+        # Insertar datos en Supabase
+        response = client.table('datos_predicciones').insert(data).execute()
+        
+        # Verificar la respuesta de Supabase
+        if response.get('status_code') == 201:
+            st.success('Registro Creado con Éxito')
+        else:
+            st.error(f"Error al crear el registro: {response.get('message')}")
+    
+    except Exception as e:
+        st.error(f"Error inesperado: {e}")
     
 
 def read_prediccion():
