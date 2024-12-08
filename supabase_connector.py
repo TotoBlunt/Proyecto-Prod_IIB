@@ -2,6 +2,7 @@ from supabase import create_client
 import pandas as pd
 import os
 
+#Se realizo al creacion de secrets en github para la gestion de credenciales de supabase
 def get_supabase_credentials():
     """Obtiene las credenciales de Supabase desde las variables de entorno."""
     supabase_url = os.environ.get('SUPABASE_URL')
@@ -12,9 +13,10 @@ def get_supabase_credentials():
 
     return supabase_url, supabase_key
 
-#obtener credenciales
 supabase_url, supabase_key = get_supabase_credentials()
+#obtener credenciales
 
-supabase: Client = create_client(supabase_url,supabase_key)
+def crear_cliente():
+    return create_client(supabase_url,supabase_key)
 
 
