@@ -14,6 +14,7 @@ import openpyxl
 import pandas as pd 
 import streamlit as st
 import numpy as np
+from datetime import datetime
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
@@ -166,6 +167,7 @@ if upload_file is not None:
             feature_3 = st.number_input('Ingresa el valor para PesoSem3',format="%.3f")
             feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado',format="%.3f")
             feature_5 = st.number_input('Ingresa el valor para MortStd',format="%.3f")
+            created_at = str(datetime.utcnow())
 
             # Botón para realizar la predicción
             if st.button('Realizar Predicción'):
@@ -176,9 +178,10 @@ if upload_file is not None:
 
                     # Hacer la predicción con el modelo
                     prediction = modelo.predict(input_data)
+                    prediction = round(prediction[0],2)
 
                     # Mostrar el resultado de la predicción
-                    st.write(f'### La predicción del modelo para Peso Final es : {prediction[0]:.2f} kg')  # Formato de dos decimales
+                    st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')  # Formato de dos decimales
                 else:
                     st.error("### Por favor, ingresa valores válidos para todas las características.")
 
