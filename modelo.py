@@ -139,7 +139,7 @@ def modelo_ensemble(top5,df):
 
         #Crear una nueva colmuna en el df
         df['Peso Prom Final Predicho'] = modelo.predict(x_model)
-        return modelo,y_pred_model,y_test_model
+        return modelo,y_pred_model,y_test_model,x_train_model,y_train_model
         
 def menu_opciones(modelo,y_pred_model,y_test_model,df):
         # Selección de página
