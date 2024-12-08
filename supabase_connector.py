@@ -13,7 +13,7 @@ import os
     return supabase_url, supabase_key'''
 
 def cargar_credenciales():
-    with open('config.toml', 'r') as f:
+    with open('secrets.toml', 'r') as f:
         config = toml.load(f)
     return config['supabase']['url'], config['supabase']['key']
 
