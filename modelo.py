@@ -21,7 +21,7 @@ st.title("Proyecto Productivo para la prediccion del peso de pollos usando varia
 
 def subir_archivo():
     #Subir archivo de excel
-    upload_file = st.file_uploader('Sube un archivo Excel',type=['xlsx'])
+    upload_file = st.file_uploader('Sube un archivo Excel',type=['xlsx','csv'])
 
     if upload_file is not None:
         try:
