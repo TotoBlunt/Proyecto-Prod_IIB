@@ -2,7 +2,12 @@ from supabase_connector import crear_cliente
 import os
 import streamlit as st
 
-client = crear_cliente()
+try:
+    client = crear_cliente()
+    st.success("Conexión a Supabase exitosa")
+except Exception as e:
+    st.error(f"Error al conectar a Supabase: {e}")
+
 
 
 def crear_prediccion(predicction_data):
@@ -34,17 +39,20 @@ def crear_prediccion(predicction_data):
         response = client.table('datos_predicciones').insert(data).execute()
 
         # Inspeccionar la respuesta de Supabase
-        st.write("Respuesta de Supabase:", response)
+        st.write("Respuesta completa de Supabase:", response)
 
-        # Verificar la respuesta de Supabase
-        if response.get('status_code') == 201:
+        # Verificar la estructura de la respuesta
+        if hasattr(response, 'data') and response.data:
             st.success('Registro Creado con Éxito')
-        else:
+        elif hasattr(response, 'status_code') and response.status_code != 201:
             error_message = response.get('data', {}).get('error', 'Mensaje de error desconocido')
             st.error(f"Error al crear el registro: {error_message}")
+        else:
+            st.error("No se recibió una respuesta válida del servidor.")
 
     except Exception as e:
         st.error(f"Error inesperado: {str(e)}")
+        st.error("Por favor verifica las credenciales y la configuración de la tabla en Supabase.")
         raise  # Para registrar el error completo en los logs de Streamlit
     
 
