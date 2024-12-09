@@ -296,31 +296,33 @@ def aplicar_estilos():
         """
         <style>
         .stButton button {
-            background-color: #4CAF50; /* Color de fondo del botón */
-            color: white; /* Color del texto del botón */
+            background-color: #4CAF50 !important; /* Color de fondo del botón */
+            color: white !important; /* Color del texto del botón */
         }
         .stTextInput input {
-            background-color: #f0f0f0; /* Color de fondo del input */
-            color: #333333; /* Color del texto del input */
+            background-color: #f0f0f0 !important; /* Color de fondo del input */
+            color: #333333 !important; /* Color del texto del input */
         }
         .stTextArea textarea {
-            background-color: #f0f0f0; /* Color de fondo del textarea */
-            color: #333333; /* Color del texto del textarea */
+            background-color: #f0f0f0 !important; /* Color de fondo del textarea */
+            color: #333333 !important; /* Color del texto del textarea */
         }
         .stSelectbox select {
-            background-color: #f0f0f0; /* Color de fondo del select */
-            color: #333333; /* Color del texto del select */
+            background-color: #f0f0f0 !important; /* Color de fondo del select */
+            color: #333333 !important; /* Color del texto del select */
         }
         .stMarkdown {
-            color: #333333; /* Color del texto en markdown */
+            color: #333333 !important; /* Color del texto en markdown */
         }
         .stSuccess {
-            color: #4CAF50; /* Color del texto en mensajes de éxito */
+            color: #4CAF50 !important; /* Color del texto en mensajes de éxito */
         }
         .stError {
-            color: #FF5252; /* Color del texto en mensajes de error */
+            color: #FF5252 !important; /* Color del texto en mensajes de error */
+        }
+        .stApp {
+            background-color: #f0f0f0 !important; /* Color de fondo de la aplicación */
         }
         </style>
         """,
-        unsafe_allow_html=True
-    )
+        unsafe_allow_html=True)
