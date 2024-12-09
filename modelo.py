@@ -229,7 +229,7 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
                     'prediction':prediction,
                 }
             
-            
+            st.write(data)
             crear_prediccion(data)
             st.success('Guardado')
 
