@@ -288,7 +288,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
 
-            data =[{
+            data ={
                 'feature_1': feature_1,
                 'feature_2': feature_2,
                 'feature_3': feature_3,
@@ -296,10 +296,10 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 'feature_5': feature_5,
                 'created_at': created_at,
                 'prediction': prediction
-            }]
+            }
             
-            #data_to_insert = json.dumps(data,indent=4)
-            data_to_insert = dict(data)
+            df_data_to_insert = pd.DataFrame(data)
+            data_to_insert = df_data_to_insert.to_dict(orient='records')
             st.write(data_to_insert)
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
