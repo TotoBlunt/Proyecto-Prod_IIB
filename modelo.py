@@ -17,6 +17,7 @@ import numpy as np
 from datetime import datetime
 from CRUD_supabase import crear_prediccion
 import json
+import uuid
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
@@ -216,7 +217,9 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')  
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
+            prediction_id = uuid.uuid4().int
             data = {
+                    'prediction_id':prediction_id,
                     'peso_sem4':feature_1,
                     'agua':feature_2,
                     'peso_sem3':feature_3,
