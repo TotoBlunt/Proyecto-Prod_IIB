@@ -289,13 +289,13 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
 
             data = {
-                'feature_1': [feature_1],
-                'feature_2': [feature_2],
-                'feature_3': [feature_3],
-                'feature_4': [feature_4],
-                'feature_5': [feature_5],
-                'created_at': [created_at],
-                'prediction': [prediction]
+                'feature_1': feature_1,
+                'feature_2': feature_2,
+                'feature_3': feature_3,
+                'feature_4': feature_4,
+                'feature_5': feature_5,
+                'created_at': created_at,
+                'prediction': prediction
             }
             
             data_to_insert = json.dumps(data,indent=4)
