@@ -297,17 +297,25 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             "created_at": created_at,
             "prediction": prediction
         }]
-            data = json.dumps(data,indent=4)
-        # Imprimir los datos para depuración
-            st.write("Datos a insertar (formato correcto):", data)
 
-        # Guardar datos si el botón es presionado
+            # Serializar correctamente para Supabase
+            json_data = json.dumps(data, indent=4)
+            
+            # Mostrar el JSON formateado en Streamlit
+            st.write("### JSON Correcto para Insertar:")
+            st.text(json_data)  # Mostrar como texto puro para verificar
+
+            # Botón para guardar los datos
             if st.button('Guardar Datos'):
-                sup = crear_prediccion(data)  # Pasar el diccionario directamente
-                if sup:
-                    st.success('Guardado correctamente en Supabase')
-                    
-#Estilos
+                try:
+                    response = crear_prediccion(data)  # data es lista de diccionarios, formato correcto
+                    if response:
+                        st.success("Datos guardados exitosamente en Supabase.")
+                    else:
+                        st.error("Error al guardar los datos en Supabase.")
+                except Exception as e:
+                    st.error(f"Error al guardar los datos: {e}")
+    #Estilos
 def aplicar_estilos():
     st.markdown(
         """
