@@ -23,7 +23,7 @@ st.title("Proyecto Productivo para la prediccion del peso de pollos usando varia
 
 def subir_archivo():
     #Subir archivo de excel
-    upload_file = st.file_uploader('Sube un archivo Excel',type=['xlsx'])
+    upload_file = st.file_uploader('Sube un archivo Excel',type=['xlsx','csv'])
 
     if upload_file is not None:
         try:
@@ -146,7 +146,7 @@ def modelo_ensemble(top5,df):
     #Crear una nueva colmuna en el df
     df['Peso Prom Final Predicho'] = modelo.predict(x_model)
     return modelo,y_pred_model,y_test_model,x_train_model,y_train_model
-'''        
+        
 def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_model):
         # Selección de página
     page = st.selectbox("### Selecciona una opción", ["Predicción",'Grafico de Comparacion en la Prediccion','Metricas de Evaluacion del Modelo'])
@@ -220,6 +220,7 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
                 st.success('Guardado')
+
 
 '''
 def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
@@ -314,7 +315,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                     else:
                         st.error("Error al guardar los datos en Supabase.")
                 except Exception as e:
-                    st.error(f"Error al guardar los datos: {e}")
+                    st.error(f"Error al guardar los datos: {e}")'''
     #Estilos
 def aplicar_estilos():
     st.markdown(
