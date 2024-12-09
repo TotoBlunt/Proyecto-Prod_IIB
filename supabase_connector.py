@@ -1,7 +1,7 @@
 from supabase import create_client
 import toml
 import os
-
+import streamlit as st
 #Se realizo al creacion de secrets en github y streamlit para la gestion de credenciales de supabase
 def inicializar_supabase():
     try:
@@ -11,7 +11,7 @@ def inicializar_supabase():
         client = create_client(url, key)
         return client
     except Exception as e:
-        print("Detalles del error:", str(e))  # Registro adicional
+        st.error("Detalles del error:", str(e))  # Registro adicional
         raise
 
 

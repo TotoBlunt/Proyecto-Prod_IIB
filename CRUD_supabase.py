@@ -3,7 +3,7 @@ import os
 import streamlit as st
 
 try:
-    client = crear_cliente()
+    client = inicializar_supabase()
     st.success("Conexión a Supabase exitosa")
 except Exception as e:
     st.error(f"Error al conectar a Supabase: {e}")
