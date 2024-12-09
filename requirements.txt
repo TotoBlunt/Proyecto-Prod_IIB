@@ -4,5 +4,5 @@ scikit-learn
 matplotlib
 streamlit
 numpy
-supabase
+supabase==0.5.3
 datetime
