@@ -298,18 +298,8 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 "prediction": prediction
             }]
             
-            def corregir_formato(data):
-                if isinstance(data, list) and len(data) > 0:
-                    data = data[0]
-                
-                # Convertir el diccionario a una cadena JSON
-                json_str = json.dumps(data)
-                
-                # Convertir la cadena JSON de nuevo a un diccionario
-                data = json.loads(json_str)
-                
-                return data
-            data_to = corregir_formato(data)
+            
+            data_to = json.dumps(data,indent=4)
             st.write(data_to)
                         
             if st.button('Guardar Datos'):
