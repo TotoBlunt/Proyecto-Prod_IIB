@@ -16,6 +16,7 @@ import streamlit as st
 import numpy as np
 from datetime import datetime
 from CRUD_supabase import crear_prediccion
+import json
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
@@ -26,9 +27,13 @@ def subir_archivo():
 
     if upload_file is not None:
         try:
-            
-            #Importar el dataframe (Leer el archivo excel)
-            df = pd.read_excel(upload_file)
+            #Cargar archivos y determinar cual es
+            if upload_file.name.endswith('.xlsx'):
+                df = pd.read_excel(upload_file)
+            elif upload_file.name.endswith('.csv'):
+                df = pd.read_csv(upload_file)
+            else:
+                st.error("Formato de archivo no soportado. Por favor, sube un archivo Excel (xlsx) o CSV (csv).")
 
             st.write('### Vista previa de los datos')
             st.write(df.head())
@@ -292,7 +297,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 'created_at': created_at,
                 'prediction': prediction
             }
-            data_to_insert = [data]
+            data_to_insert = json.dumps(data,indent=4)
             st.write(data_to_insert)
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
