@@ -38,7 +38,7 @@ def subir_archivo():
             st.error(f"Error de Sintaxis: {e}")
         except Exception as e:
             st.error(f"Error inesperado: {e}")
-    return df
+        return df
 
 
 def seleccion_variables(df):
