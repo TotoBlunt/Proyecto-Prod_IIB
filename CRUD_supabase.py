@@ -2,40 +2,14 @@ from supabase_connector import inicializar_supabase
 import os
 import streamlit as st
 
-try:
-    client = inicializar_supabase()
-    st.success("Conexión a Supabase exitosa")
-except Exception as e:
-    st.error(f"Error al conectar a Supabase: {e}")
 
-
+client = inicializar_supabase()
 
 def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
-
-    # Verificar datos necesarios
-    required_keys = ['feature_1', 'feature_2', 'feature_3', 'feature_4', 'feature_5', 'created_at', 'prediction']
-    for key in required_keys:
-        if key not in predicction_data[0]:
-            st.error(f"Falta la clave '{key}' en predicction_data")
-            return
-
-    # Preparar datos para la inserción
-    data = {
-        'peso_sem3': predicction_data[0]['feature_3'],
-        'peso_sem4': predicction_data[0]['feature_1'],
-        'agua': predicction_data[0]['feature_2'],
-        'consumo_acabado': predicction_data[0]['feature_4'],
-        'mortalidad_std': predicction_data[0]['feature_5'],
-        'created_at': predicction_data[0]['created_at'],
-        'prediction': predicction_data[0]['prediction']
-    }
-
-    st.write("Datos preparados para inserción:", data)
-
     try:
         # Insertar datos en Supabase
-        response = client.table('datos_predicciones').insert(data).execute()
+        response = client.table('datos_predicciones').insert(predicction_data).execute()
         
         # Mostrar la respuesta completa para depuración
         st.write("Respuesta de Supabase:", response)
