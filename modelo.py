@@ -298,10 +298,20 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 "prediction": prediction
             }]
             
-            data_to_insert = json.dumps(data,indent=4)
-            data_to_insert = json.loads(data_to_insert)
-            st.write("Datos preparados para inserción:", data_to_insert)
-            
+            def corregir_formato(data):
+                if isinstance(data, list) and len(data) > 0:
+                    data = data[0]
+                
+                # Convertir el diccionario a una cadena JSON
+                json_str = json.dumps(data)
+                
+                # Convertir la cadena JSON de nuevo a un diccionario
+                data = json.loads(json_str)
+                
+                return data
+            data_to_insert = corregir_formato(data)
+            st.write(data_to_insert)
+                        
             if st.button('Guardar Datos'):
                 sup= crear_prediccion(data_to_insert)
                 st.success('Guardado')
