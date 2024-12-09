@@ -299,7 +299,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             }
             
             data_to_insert = json.dumps(data,indent=4)
-            data_to_insert = [data_to_insert]
+            data_to_insert = data_to_insert
             st.write(data_to_insert)
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
