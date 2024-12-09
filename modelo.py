@@ -312,7 +312,7 @@ def aplicar_estilos():
             color: #333333 !important; /* Color del texto del select */
         }
         .stMarkdown {
-            color: #333333 !important; /* Color del texto en markdown */
+            color: #92CD00 !important; /* Color del texto en markdown */
         }
         .stSuccess {
             color: #4CAF50 !important; /* Color del texto en mensajes de éxito */
