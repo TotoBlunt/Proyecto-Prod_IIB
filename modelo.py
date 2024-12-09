@@ -300,7 +300,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             
             
             data_to = json.dumps(data,indent=4)
-            st.write(data_to)
+            st.json(data_to)
                         
             if st.button('Guardar Datos'):
                 sup= crear_prediccion(data_to)
