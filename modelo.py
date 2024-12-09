@@ -277,7 +277,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 # Hacer la predicción con el modelo
                 prediction = modelo.predict(input_data)
                 prediction = round(prediction[0], 2)  # Formato de dos decimales
-
+                prediction = float(prediction)
                 # Mostrar el resultado de la predicción
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
             else:
@@ -293,9 +293,10 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 'prediction': prediction
             }
             data_to_insert = [data]
+            st.write(data_to_insert)
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
-                st.success('Guardado')
+                
 #Estilos
 def aplicar_estilos():
     st.markdown(

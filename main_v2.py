@@ -1,5 +1,4 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,aplicar_estilos
-from CRUD_supabase import crear_prediccion,read_prediccion,update_prediccion,delete_prediccion,listar_registros,main_menu
 import streamlit as st
 
 aplicar_estilos()
