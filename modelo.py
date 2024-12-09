@@ -38,7 +38,7 @@ def subir_archivo():
             st.error(f"Error de Sintaxis: {e}")
         except Exception as e:
             st.error(f"Error inesperado: {e}")
-        return df
+    return df
 
 
 def seleccion_variables(df):
@@ -254,11 +254,11 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     elif page == "Predicción":
         st.title("Aplicación de Predicción")
         # Entradas de datos para las características
-        feature_1 = st.number_input('Ingresa el valor para PesoSem4', format="%.3f")
-        feature_2 = st.number_input('Ingresa el valor para Agua', format="%.3f")
-        feature_3 = st.number_input('Ingresa el valor para PesoSem3', format="%.3f")
-        feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f")
-        feature_5 = st.number_input('Ingresa el valor para MortStd', format="%.3f")
+        feature_1 = st.number_input('Ingresa el valor para PesoSem4', format="%.3f",value=0.0)
+        feature_2 = st.number_input('Ingresa el valor para Agua', format="%.3f",value=0.0)
+        feature_3 = st.number_input('Ingresa el valor para PesoSem3', format="%.3f",value=0.0)
+        feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f",value=0.0)
+        feature_5 = st.number_input('Ingresa el valor para MortStd', format="%.3f",value=0.0)
         created_at = str(datetime.utcnow())
 
         # Botón para realizar la predicción
