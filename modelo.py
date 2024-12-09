@@ -309,11 +309,11 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 data = json.loads(json_str)
                 
                 return data
-            data_to_insert = corregir_formato(data)
-            st.write(data_to_insert)
+            data_to = corregir_formato(data)
+            st.write(data_to)
                         
             if st.button('Guardar Datos'):
-                sup= crear_prediccion(data_to_insert)
+                sup= crear_prediccion(data_to)
                 st.success('Guardado')
                 
 #Estilos
