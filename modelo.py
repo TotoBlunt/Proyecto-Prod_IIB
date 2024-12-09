@@ -299,7 +299,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
         }]
 
             # Serializar correctamente para Supabase
-            json_data = json.dumps(data, indent=4)
+            json_data = json.dumps([data], indent=4)
             
             # Mostrar el JSON formateado en Streamlit
             st.write("### JSON Correcto para Insertar:")
