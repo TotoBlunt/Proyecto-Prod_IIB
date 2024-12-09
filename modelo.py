@@ -294,7 +294,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 "feature_3": feature_3,
                 "feature_4": feature_4,
                 "feature_5": feature_5,
-                "created_at": created_at,
+                "created_at": 'created_at',
                 "prediction": prediction
             }]
             
