@@ -265,6 +265,12 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
         if st.button('Realizar Predicción'):
             # Validar que las entradas no estén vacías
             if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
+                # Convertir las entradas a float
+                feature_1 = float(feature_1)
+                feature_2 = float(feature_2)
+                feature_3 = float(feature_3)
+                feature_4 = float(feature_4)
+                feature_5 = float(feature_5)
                 # Crear el array con los datos de entrada
                 input_data = np.array([[feature_1, feature_2, feature_3, feature_4, feature_5]])
 
