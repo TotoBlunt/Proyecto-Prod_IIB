@@ -290,7 +290,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
                 st.success('Guardado')
-
+#Estilos
 def aplicar_estilos():
     st.markdown(
         """
@@ -305,7 +305,7 @@ def aplicar_estilos():
         }
         .stTextArea textarea {
             background-color: #f0f0f0 !important; /* Color de fondo del textarea */
-            color: #333333 !important; /* Color del texto del textarea */
+            color: #000000 !important; /* Color del texto del textarea */
         }
         .stSelectbox select {
             background-color: #f0f0f0 !important; /* Color de fondo del select */
@@ -321,7 +321,7 @@ def aplicar_estilos():
             color: #FF5252 !important; /* Color del texto en mensajes de error */
         }
         .stApp {
-            background-color: #f0f0f0 !important; /* Color de fondo de la aplicación */
+            background-color: #336699  !important; /* Color de fondo de la aplicación */
         }
         </style>
         """,
