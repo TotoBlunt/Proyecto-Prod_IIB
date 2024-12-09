@@ -321,7 +321,7 @@ def aplicar_estilos():
             color: #FF5252 !important; /* Color del texto en mensajes de error */
         }
         .stApp {
-            background-color: #333333 !important; /* Color de fondo de la aplicación */
+            background-color:  #CCDDDD !important; /* Color de fondo de la aplicación */
         }
         </style>
         """,
