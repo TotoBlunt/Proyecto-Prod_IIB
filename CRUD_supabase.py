@@ -1,4 +1,4 @@
-from supabase_connector import crear_cliente
+from supabase_connector import inicializar_supabase
 import os
 import streamlit as st
 
