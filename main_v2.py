@@ -1,7 +1,8 @@
-from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones
+from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,aplicar_estilos
 from CRUD_supabase import crear_prediccion,read_prediccion,update_prediccion,delete_prediccion,listar_registros,main_menu
 import streamlit as st
 
+aplicar_estilos()
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v2)")
 

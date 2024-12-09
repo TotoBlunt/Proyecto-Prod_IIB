@@ -290,3 +290,37 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
                 st.success('Guardado')
+
+def aplicar_estilos():
+    st.markdown(
+        """
+        <style>
+        .stButton button {
+            background-color: #4CAF50; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+        }
+        .stTextInput input {
+            background-color: #f0f0f0; /* Color de fondo del input */
+            color: #333333; /* Color del texto del input */
+        }
+        .stTextArea textarea {
+            background-color: #f0f0f0; /* Color de fondo del textarea */
+            color: #333333; /* Color del texto del textarea */
+        }
+        .stSelectbox select {
+            background-color: #f0f0f0; /* Color de fondo del select */
+            color: #333333; /* Color del texto del select */
+        }
+        .stMarkdown {
+            color: #333333; /* Color del texto en markdown */
+        }
+        .stSuccess {
+            color: #4CAF50; /* Color del texto en mensajes de éxito */
+        }
+        .stError {
+            color: #FF5252; /* Color del texto en mensajes de error */
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
