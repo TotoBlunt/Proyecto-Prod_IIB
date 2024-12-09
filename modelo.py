@@ -288,7 +288,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
 
-            data = {
+            data = [{
                 'feature_1': feature_1,
                 'feature_2': feature_2,
                 'feature_3': feature_3,
@@ -296,13 +296,13 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 'feature_5': feature_5,
                 'created_at': created_at,
                 'prediction': prediction
-            }
+            }]
             
-            data_to_insert = [json.dumps(data,indent=4)]
-            st.write("Datos preparados para inserción:", data_to_insert)
+            #data_to_insert = [json.dumps(data,indent=4)]
+            st.write("Datos preparados para inserción:", data)
             
             if st.button('Guardar Datos'):
-                crear_prediccion(data_to_insert)
+                crear_prediccion(data)
                 st.success('Guardado')
                 
 #Estilos
