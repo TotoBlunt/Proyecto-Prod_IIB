@@ -1,4 +1,4 @@
-from supabase import create_client
+from supabase import create_client,Client
 import toml
 import os
 import streamlit as st
@@ -8,8 +8,8 @@ def inicializar_supabase():
     """Obtiene las credenciales de Supabase desde las variables de entorno."""
     supabase_url = os.getenv('SUPABASE_URL')
     supabase_key = os.getenv('SUPABASE_KEY')
-    client = create_client(supabase_url,supabase_key)
-    return client
+    supabase: Client = create_client(supabase_url,supabase_key)
+    return Client
     
 
 
