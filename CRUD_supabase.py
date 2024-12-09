@@ -7,21 +7,23 @@ client = crear_cliente()
 
 def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
+    
     # Verificar que predicction_data contenga los datos necesarios
-    required_keys = ['feature_3', 'feature_1', 'feature_2', 'feature_4', 'feature_5', 'created_at']
+    required_keys = ['feature_1', 'feature_2', 'feature_3', 'feature_4', 'feature_5', 'created_at', 'prediction']
     for key in required_keys:
-        if key not in predicction_data:
+        if key not in predicction_data[0]:
             st.error(f"Falta la clave '{key}' en predicction_data")
             return
     
     # Crear el diccionario de datos a insertar
     data = {
-        'peso_sem3': predicction_data['feature_3'],
-        'peso_sem4': predicction_data['feature_1'],
-        'agua': predicction_data['feature_2'],
-        'consumo_acabado': predicction_data['feature_4'],
-        'mortalidad_std': predicction_data['feature_5'],
-        'created_at': predicction_data['created_at']
+        'peso_sem3': predicction_data[0]['feature_3'],
+        'peso_sem4': predicction_data[0]['feature_1'],
+        'agua': predicction_data[0]['feature_2'],
+        'consumo_acabado': predicction_data[0]['feature_4'],
+        'mortalidad_std': predicction_data[0]['feature_5'],
+        'created_at': predicction_data[0]['created_at'],
+        'prediction': predicction_data[0]['prediction']
     }
     
     try:
