@@ -297,7 +297,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             "created_at": created_at,
             "prediction": prediction
         }]
-
+            data = json.dumps(data,indent=4)
         # Imprimir los datos para depuración
             st.write("Datos a insertar (formato correcto):", data)
 
