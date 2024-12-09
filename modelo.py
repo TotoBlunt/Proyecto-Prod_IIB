@@ -300,11 +300,12 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             ]
             
             
-            st.json(data)
-                        
+            st.write("Datos a insertar:", data)
+
             if st.button('Guardar Datos'):
-                sup= crear_prediccion(data)
-                st.success('Guardado')
+                sup = crear_prediccion(data)  # Pasar el objeto de datos directamente
+                if sup:
+                    st.success('Guardado')
                 
 #Estilos
 def aplicar_estilos():
