@@ -10,12 +10,13 @@ def get_supabase_credentials():
     if not supabase_url or not supabase_key:
         raise ValueError("Las credenciales de Supabase no están configuradas.")
 
-    return supabase_url, supabase_key
-supabase_url, supabase_key = get_supabase_credentials()
-#obtener credenciales
-
-def crear_cliente():
     return create_client(supabase_url,supabase_key)
 
 
+try:
+    client = inicializar_supabase()
+    st.write("Conexión a Supabase verificada")
+except Exception as e:
+    st.error(f"Error conectando a Supabase: {e}")
+    raise
 

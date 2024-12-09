@@ -13,14 +13,13 @@ except Exception as e:
 def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
 
-    # Verificar que predicction_data contenga los datos necesarios
+    st.write("Iniciando proceso de predicción...")
     required_keys = ['feature_1', 'feature_2', 'feature_3', 'feature_4', 'feature_5', 'created_at', 'prediction']
     for key in required_keys:
         if key not in predicction_data[0]:
             st.error(f"Falta la clave '{key}' en predicction_data")
             return
 
-    # Crear el diccionario de datos a insertar
     data = {
         'peso_sem3': predicction_data[0]['feature_3'],
         'peso_sem4': predicction_data[0]['feature_1'],
@@ -30,30 +29,19 @@ def crear_prediccion(predicction_data):
         'created_at': predicction_data[0]['created_at'],
         'prediction': predicction_data[0]['prediction']
     }
-
-    # Mostrar datos para depuración
-    st.write("Datos a insertar:", data)
+    st.write("Datos preparados para insertar:", data)
 
     try:
-        # Insertar datos en Supabase
         response = client.table('datos_predicciones').insert(data).execute()
-
-        # Inspeccionar la respuesta de Supabase
         st.write("Respuesta completa de Supabase:", response)
 
-        # Verificar la estructura de la respuesta
         if hasattr(response, 'data') and response.data:
-            st.success('Registro Creado con Éxito')
-        elif hasattr(response, 'status_code') and response.status_code != 201:
-            error_message = response.get('data', {}).get('error', 'Mensaje de error desconocido')
-            st.error(f"Error al crear el registro: {error_message}")
+            st.success('Registro creado exitosamente')
         else:
             st.error("No se recibió una respuesta válida del servidor.")
-
     except Exception as e:
-        st.error(f"Error inesperado: {str(e)}")
-        st.error("Por favor verifica las credenciales y la configuración de la tabla en Supabase.")
-        raise  # Para registrar el error completo en los logs de Streamlit
+        st.error(f"Error inesperado: {e}")
+        raise
     
 
 def read_prediccion():
