@@ -298,8 +298,8 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 'prediction': prediction
             }
             
-            df_data_to_insert = pd.DataFrame(data)
-            data_to_insert = df_data_to_insert.to_dict(orient='records')
+            df_data = pd.DataFrame(data)
+            data_to_insert = df_data.to_dict(orient='records')
             st.write(data_to_insert)
             if st.button('Guardar Datos'):
                 crear_prediccion(data_to_insert)
