@@ -288,25 +288,25 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
 
-            data =[ {
-                "feature_1": feature_1,
-                "feature_2": feature_2,
-                "feature_3": feature_3,
-                "feature_4": feature_4,
-                "feature_5": feature_5,
-                "created_at":created_at,
-                "prediction": prediction
-            }
-            ]
-            
-            
-            st.write("Datos a insertar:", data)
+            data = [{
+            "feature_1": feature_1,
+            "feature_2": feature_2,
+            "feature_3": feature_3,
+            "feature_4": feature_4,
+            "feature_5": feature_5,
+            "created_at": created_at,
+            "prediction": prediction
+        }]
 
+        # Imprimir los datos para depuración
+            st.write("Datos a insertar (formato correcto):", data)
+
+        # Guardar datos si el botón es presionado
             if st.button('Guardar Datos'):
-                sup = crear_prediccion(data)  # Pasar el objeto de datos directamente
+                sup = crear_prediccion(data)  # Pasar el diccionario directamente
                 if sup:
-                    st.success('Guardado')
-                
+                    st.success('Guardado correctamente en Supabase')
+                    
 #Estilos
 def aplicar_estilos():
     st.markdown(
