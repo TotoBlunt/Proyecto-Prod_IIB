@@ -22,12 +22,15 @@ import json
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
 
 def subir_archivo():
-    #Subir archivo de excel
-    upload_file = st.file_uploader('Sube un archivo Excel',type=['xlsx','csv'])
+    # Subir archivo de excel
+    upload_file = st.file_uploader('Sube un archivo Excel', type=['xlsx', 'csv'])
+
+    # Inicializar df como None
+    df = None
 
     if upload_file is not None:
         try:
-            #Cargar archivos y determinar cual es
+            # Cargar archivos y determinar cual es
             if upload_file.name.endswith('.xlsx'):
                 df = pd.read_excel(upload_file)
             elif upload_file.name.endswith('.csv'):
@@ -35,86 +38,92 @@ def subir_archivo():
             else:
                 st.error("Formato de archivo no soportado. Por favor, sube un archivo Excel (xlsx) o CSV (csv).")
 
-            st.write('### Vista previa de los datos')
-            st.write(df.head())
+            if df is not None:
+                st.write('### Vista previa de los datos')
+                st.write(df.head())
         except FileNotFoundError as e:
             st.error(f"Error en el proceso: {e}")
         except SyntaxError as e:
             st.error(f"Error de Sintaxis: {e}")
         except Exception as e:
             st.error(f"Error inesperado: {e}")
-    return df
 
+    return df
 
 def seleccion_variables(df):
 
-    #Convertir variables categóricas a valores numéricos
-    categorical_cols = df.select_dtypes(include=['object']).columns
-    for col in categorical_cols:
-        le = LabelEncoder()
-        df[col] = le.fit_transform(df[col])
+    try:
+        # Convertir variables categóricas a valores numéricos
+        categorical_cols = df.select_dtypes(include=['object']).columns
+        for col in categorical_cols:
+            le = LabelEncoder()
+            df[col] = le.fit_transform(df[col])
             
-    # Excluir la columna IEP de la selección inicial
-    X = df.drop(['PesoFinal', 'SiNoPesoFinal', 'ICA', 'IEP', 'GananciaDiaVenta', 'DiasSaca', 'EdadGranja',
-            'ConsumoFinalizador', 'PesoStd', 'Nzona', 'StdConsAve'], axis=1)  # Todas las variables menos PesoFinal, SiNoPesoFinal e IEP
-    y = df['SiNoPesoFinal']  # Variable objetivo (Si/No)
+        # Excluir la columna IEP de la selección inicial
+        X = df.drop(['PesoFinal', 'SiNoPesoFinal', 'ICA', 'IEP', 'GananciaDiaVenta', 'DiasSaca', 'EdadGranja',
+                    'ConsumoFinalizador', 'PesoStd', 'Nzona', 'StdConsAve'], axis=1)  # Todas las variables menos PesoFinal, SiNoPesoFinal e IEP
+        y = df['SiNoPesoFinal']  # Variable objetivo (Si/No)
 
-    # Seleccionar las 20 variables más importantes (excluyendo IEP)
-    selector = SelectKBest(f_classif, k=20)
-    selector.fit(X, y)
-
-    # Obtener las variables seleccionadas y asegurarse de que IEP no esté incluido
-    selected_features = X.columns[selector.get_support()]
-
-    # Si IEP está dentro de las 20 principales, añadir la siguiente mejor característica
-    k = 20
-    while 'IEP' in selected_features:
-        k += 1
-        selector = SelectKBest(f_classif, k=k)
+        # Seleccionar las 20 variables más importantes (excluyendo IEP)
+        selector = SelectKBest(f_classif, k=20)
         selector.fit(X, y)
+
+        # Obtener las variables seleccionadas y asegurarse de que IEP no esté incluido
         selected_features = X.columns[selector.get_support()]
 
-    # Imprimir las variables seleccionadas
-    st.write("#### Características seleccionadas:", pd.DataFrame(selected_features))
+        # Si IEP está dentro de las 20 principales, añadir la siguiente mejor característica
+        k = 20
+        while 'IEP' in selected_features:
+            k += 1
+            selector = SelectKBest(f_classif, k=k)
+            selector.fit(X, y)
+            selected_features = X.columns[selector.get_support()]
 
-    # Crear y entrenar un modelo de aprendizaje
-    X_train, X_test, y_train, y_test = train_test_split(X[selected_features], y, test_size=0.2, random_state=42)
-    model = RandomForestClassifier()
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
+        # Imprimir las variables seleccionadas
+        st.write("#### Características seleccionadas:", pd.DataFrame(selected_features))
 
-    st.write('### Metrica de Evaluacion para el Modelo RandomForestClasifier de Importancias')
-    st.write(f'#### Accuracy: {accuracy_score(y_test, y_pred):.4f}')
-    st.write(f'#### Promedio de la Validacion Cruzada: {cross_val_score(model,X_train,y_train,cv=5,scoring='accuracy').mean():.4f}')
+        # Crear y entrenar un modelo de aprendizaje
+        X_train, X_test, y_train, y_test = train_test_split(X[selected_features], y, test_size=0.2, random_state=42)
+        model = RandomForestClassifier()
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
 
-    # Importancia de las características
-    importances = model.feature_importances_
-    feature_importances = pd.DataFrame({'Característica': selected_features, 'Importancia': importances})
-    feature_importances = feature_importances.sort_values('Importancia', ascending=False)
+        st.write('### Métrica de Evaluación para el Modelo RandomForestClassifier de Importancias')
+        st.write(f'#### Accuracy: {accuracy_score(y_test, y_pred):.4f}')
+        st.write(f'#### Promedio de la Validación Cruzada: {cross_val_score(model, X_train, y_train, cv=5, scoring="accuracy").mean():.4f}')
+
+        # Importancia de las características
+        importances = model.feature_importances_
+        feature_importances = pd.DataFrame({'Característica': selected_features, 'Importancia': importances})
+        feature_importances = feature_importances.sort_values('Importancia', ascending=False)
         
-    #Grafico de importancia
-    # Crear el diagrama de barras
-    fig,ax = plt.subplots()
-    ax.barh(feature_importances['Característica'], feature_importances['Importancia'])
-    ax.set_xlabel('Importancia')
-    ax.set_ylabel('Característica')
-    ax.set_title('Importancia de las 20 Características Principales')
-    st.pyplot(fig)
+        # Gráfico de importancia
+        # Crear el diagrama de barras
+        fig, ax = plt.subplots()
+        ax.barh(feature_importances['Característica'], feature_importances['Importancia'])
+        ax.set_xlabel('Importancia')
+        ax.set_ylabel('Característica')
+        ax.set_title('Importancia de las 20 Características Principales')
+        st.pyplot(fig)
 
-    # Sugerencias para mejorar el objetivo "SI"
-    st.write("### Para mejorar el logro del objetivo 'SI' en PesoFinal, concéntrate en mejorar las siguientes 5 variables principales:")
-    cont = 0
-    for feature, importance in feature_importances.itertuples(index=False):
-        st.write(f"- {feature} (Importancia: {importance:.3f})")
-        cont +=1
-        if cont == 5:
-            break
-    #Variables mas importantes a trabajar en el modelo
-    top5 = feature_importances['Característica'].head(5)
-    top5 = top5.tolist()
-    st.write(f'#### Variables a utilizar en el modelo: ',top5)
+        # Sugerencias para mejorar el objetivo "SI"
+        st.write("### Para mejorar el logro del objetivo 'SI' en PesoFinal, concéntrate en mejorar las siguientes 5 variables principales:")
+        cont = 0
+        for feature, importance in feature_importances.itertuples(index=False):
+            st.write(f"- {feature} (Importancia: {importance:.3f})")
+            cont += 1
+            if cont == 5:
+                break
+        # Variables más importantes a trabajar en el modelo
+        top5 = feature_importances['Característica'].head(5)
+        top5 = top5.tolist()
+        st.write(f'#### Variables a utilizar en el modelo: ', top5)
 
-    return top5
+        return top5
+    except KeyError as e:
+        st.error(f"Error: La columna '{e.args[0]}' no se encuentra en el DataFrame.")
+    except Exception as e:
+        st.error(f"Error inesperado: {e}")
 
 def modelo_ensemble(top5,df):
         
