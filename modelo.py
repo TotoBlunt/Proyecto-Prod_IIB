@@ -216,10 +216,9 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
 
         # Crear el diccionario con los datos
-        prediction_id = uuid.uuid4().hex
+        #prediction_id = uuid.uuid4().hex
         created_at = datetime.utcnow().isoformat()
         data = {
-            'prediction_id': prediction_id,
             'peso_sem4': feature_1,
             'agua': feature_2,
             'peso_sem3': feature_3,
