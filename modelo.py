@@ -218,14 +218,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             # Crear el diccionario con los datos
             #prediction_id = uuid.uuid4().hex
             created_at = datetime.utcnow().isoformat()
-            data = {
-                'peso_sem4': feature_1,
-                'agua': feature_2,
-                'peso_sem3': feature_3,
-                'consumo_acabado': feature_4,
-                'mortalidad_std': feature_5,
-                'created_at': created_at,
-                'prediction': prediction
+            data = {'peso_sem4': feature_1 ,'agua': feature_2 ,'peso_sem3': feature_3 ,'consumo_acabado': feature_4 ,'mortalidad_std': feature_5 ,'created_at': created_at ,'prediction': prediction
             }
 
             # Mostrar el diccionario en un formato legible
