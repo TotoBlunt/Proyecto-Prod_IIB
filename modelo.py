@@ -200,7 +200,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
         feature_4 = float(st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f"))
         feature_5 = float(st.number_input('Ingresa el valor para MortStd', format="%.3f"))
         created_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
-
+        datos = {'peso_sem4':feature_1,'agua':feature_2,'peso_sem3':feature_3,'consumo_acabado':feature_4,'mortalidad_std':feature_5}
         # Botón para realizar la predicción
         if st.button('Realizar Predicción'):
             # Validar que las entradas no estén vacías
@@ -217,7 +217,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
 
             # Crear el diccionario con los datos
             #prediction_id = uuid.uuid4().hex
-            datos = {'peso_sem4':feature_1,'agua':feature_2,'peso_sem3':feature_3,'consumo_acabado':feature_4,'mortalidad_std':feature_5,'created_at':created_at}
+            datos['prediction'] = prediction
             
 
             # Mostrar el diccionario en un formato legible
