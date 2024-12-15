@@ -222,7 +222,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
 
             # Mostrar el diccionario en un formato legible
             st.write("### Datos a guardar:")
-            st.write(datos)
+            st.write(type(datos))
 
             # Guardar los datos en Supabase
             try:
