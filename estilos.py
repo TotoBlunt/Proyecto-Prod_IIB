@@ -1,4 +1,6 @@
+import streamlit as st
 #Interfaz de Strreamlit
+
 
 def aplicar_estilos():
     st.markdown(
