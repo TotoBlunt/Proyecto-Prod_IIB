@@ -1,5 +1,6 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,aplicar_estilos
 import streamlit as st
+from estilos import aplicar_estilos
 
 aplicar_estilos()
 #Titulo para el app

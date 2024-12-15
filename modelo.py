@@ -23,7 +23,7 @@ import uuid
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
 
 def subir_archivo():
-    # Subir archivo de excel
+    # Subir archivo de excel o csv
     upload_file = st.file_uploader('Sube un archivo Excel', type=['xlsx', 'csv'])
 
     # Inicializar df como None
@@ -328,39 +328,4 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                         st.error("Error al guardar los datos en Supabase.")
                 except Exception as e:
                     st.error(f"Error al guardar los datos: {e}")'''
-    #Estilos
-def aplicar_estilos():
-    st.markdown(
-        """
-        <style>
-        .stButton button {
-            background-color: #4CAF50 !important; /* Color de fondo del botón */
-            color: white !important; /* Color del texto del botón */
-        }
-        .stTextInput input {
-            background-color: #f0f0f0 !important; /* Color de fondo del input */
-            color: #333333 !important; /* Color del texto del input */
-        }
-        .stTextArea textarea {
-            background-color: #f0f0f0 !important; /* Color de fondo del textarea */
-            color: #000000 !important; /* Color del texto del textarea */
-        }
-        .stSelectbox select {
-            background-color: #f0f0f0 !important; /* Color de fondo del select */
-            color: #333333 !important; /* Color del texto del select */
-        }
-        .stMarkdown {
-            color: #FFFFFF !important; /* Color del texto en markdown */
-        }
-        .stSuccess {
-            color: #4CAF50 !important; /* Color del texto en mensajes de éxito */
-        }
-        .stError {
-            color: #FF5252 !important; /* Color del texto en mensajes de error */
-        }
-        .stApp {
-            background-color:  #CCDDDD !important; /* Color de fondo de la aplicación */
-        }
-        </style>
-        """,
-        unsafe_allow_html=True)
+  
