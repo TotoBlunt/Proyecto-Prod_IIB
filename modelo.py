@@ -215,28 +215,28 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 # Mostrar el resultado de la predicción
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
 
-        # Crear el diccionario con los datos
-        #prediction_id = uuid.uuid4().hex
-        created_at = datetime.utcnow().isoformat()
-        data = {
-            'peso_sem4': feature_1,
-            'agua': feature_2,
-            'peso_sem3': feature_3,
-            'consumo_acabado': feature_4,
-            'mortalidad_std': feature_5,
-            'created_at': created_at,
-            'prediction': prediction,
-        }
+            # Crear el diccionario con los datos
+            #prediction_id = uuid.uuid4().hex
+            created_at = datetime.utcnow().isoformat()
+            data = {
+                'peso_sem4': feature_1,
+                'agua': feature_2,
+                'peso_sem3': feature_3,
+                'consumo_acabado': feature_4,
+                'mortalidad_std': feature_5,
+                'created_at': created_at,
+                'prediction': prediction,
+            }
 
-        # Mostrar el diccionario en un formato legible
-        st.write("### Datos a guardar:")
-        st.json(data)
+            # Mostrar el diccionario en un formato legible
+            st.write("### Datos a guardar:")
+            st.json(data)
 
-        # Guardar los datos en Supabase
-        try:
-            crear_prediccion(data)
-            st.success(f'Predicción guardada exitosamente con ID: {prediction_id}')
-        except Exception as e:
-            st.error(f"Error al guardar en Supabase: {e}")
-    else:
+            # Guardar los datos en Supabase
+            try:
+                crear_prediccion(data)
+                st.success(f'Predicción guardada exitosamente con ID: {prediction_id}')
+            except Exception as e:
+                st.error(f"Error al guardar en Supabase: {e}")
+        else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
