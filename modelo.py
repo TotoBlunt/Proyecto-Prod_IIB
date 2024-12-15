@@ -225,7 +225,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 'consumo_acabado': feature_4,
                 'mortalidad_std': feature_5,
                 'created_at': created_at,
-                'prediction': prediction,
+                'prediction': prediction
             }
 
             # Mostrar el diccionario en un formato legible
@@ -235,7 +235,6 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             # Guardar los datos en Supabase
             try:
                 crear_prediccion(data)
-                st.success(f'Predicción guardada exitosamente con ID: {prediction_id}')
             except Exception as e:
                 st.error(f"Error al guardar en Supabase: {e}")
     else:

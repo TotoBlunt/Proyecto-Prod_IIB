@@ -12,7 +12,7 @@ def crear_prediccion(predicction_data: dict):
     try:
         # Mostrar los datos que se van a insertar (opcional)
         st.write("Datos a insertar:", predicction_data)
-
+        predicction_data = json.dumps(predicction_data,indent=4)
         # Insertar datos en Supabase
         response = client.table('datos_predicciones').insert(predicction_data).execute()
 
