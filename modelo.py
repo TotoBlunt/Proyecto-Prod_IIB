@@ -157,27 +157,27 @@ def modelo_ensemble(top5,df):
     df['Peso Prom Final Predicho'] = modelo.predict(x_model)
     return modelo,y_pred_model,y_test_model,x_train_model,y_train_model
         
-def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_model):
-        # Selección de página
-    page = st.selectbox("### Selecciona una opción", ["Predicción",'Grafico de Comparacion en la Prediccion','Metricas de Evaluacion del Modelo'])
-        
+def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
+    # Selección de página
+    page = st.selectbox("### Selecciona una opción", ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo'])
+
     if page == 'Metricas de Evaluacion del Modelo':
-            # Calcular métricas de evaluación
+        # Calcular métricas de evaluación
         st.write('### Metricas de Evaluacion del "Modelo Final(VotingRegresor)":\n')
         mse = mean_squared_error(y_test_model, y_pred_model)
         r2 = r2_score(y_test_model, y_pred_model)
-        mae = mean_absolute_error(y_test_model,y_pred_model)
+        mae = mean_absolute_error(y_test_model, y_pred_model)
         st.write(f'#### Coeficiente de determinacion(R²): {r2:.4f}')
         st.write(f'#### Error cuadratico medio(MSE): {mse:.4f}')
         st.write(f'#### Error absoluto medio(MAE): {mae:.4f}')
-        #Validacion Cruzada del modelo Voting
+        # Validación Cruzada del modelo Voting
         r2_scores = cross_val_score(modelo, x_train_model, y_train_model, cv=5, scoring='r2')
         st.write(f'#### R² promedio en validación cruzada: {r2_scores.mean():.4f}')
+
     elif page == 'Grafico de Comparacion en la Prediccion':
         st.write('### Grafico de Comparacion en la Prediccion')
         # Grafico de Comparacion
-        fig,ax = plt.subplots()
-
+        fig, ax = plt.subplots()
         ax.plot(df['PesoFinal'], label='Peso Prom. Final (Real)', color='blue')
         ax.plot(df['Peso Prom Final Predicho'], label='Peso Prom. Final Predicho', color='red')
         ax.set_xlabel('Índice')
@@ -187,51 +187,56 @@ def menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_mode
         ax.grid(True)
         st.pyplot(fig)
 
-            # Varianza
-        varianza = ((df['PesoFinal'] - df['Peso Prom Final Predicho']) **2).mean()
+        # Varianza
+        varianza = ((df['PesoFinal'] - df['Peso Prom Final Predicho']) ** 2).mean()
         st.write(f"#### La varianza de los valores es:  {varianza:.4f}")
-
 
     elif page == "Predicción":
         st.title("Aplicación de Prediccion")
-             # Entradas de datos para las características
-        feature_1 = st.number_input('Ingresa el valor para PesoSem4',format="%.3f")
-        feature_2 = st.number_input('Ingresa el valor para Agua',format="%.3f")
-        feature_3 = st.number_input('Ingresa el valor para PesoSem3',format="%.3f")
-        feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado',format="%.3f")
-        feature_5 = st.number_input('Ingresa el valor para MortStd',format="%.3f")
-        created_at = str(datetime.utcnow())
+        # Entradas de datos para las características
+        feature_1 = st.number_input('Ingresa el valor para PesoSem4', format="%.3f")
+        feature_2 = st.number_input('Ingresa el valor para Agua', format="%.3f")
+        feature_3 = st.number_input('Ingresa el valor para PesoSem3', format="%.3f")
+        feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f")
+        feature_5 = st.number_input('Ingresa el valor para MortStd', format="%.3f")
+        created_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
 
-            # Botón para realizar la predicción
+        # Botón para realizar la predicción
         if st.button('Realizar Predicción'):
-                # Validar que las entradas no estén vacías
+            # Validar que las entradas no estén vacías
             if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
-                    # Crear el array con los datos de entrada
-                input_data = np.array([[feature_1, feature_2, feature_3,feature_4,feature_5]])
+                # Crear el array con los datos de entrada
+                input_data = np.array([[feature_1, feature_2, feature_3, feature_4, feature_5]])
 
-                    # Hacer la predicción con el modelo
+                # Hacer la predicción con el modelo
                 prediction = modelo.predict(input_data)
-                prediction = round(prediction[0],2) # Formato de dos decimales
+                prediction = round(prediction[0], 2)  # Formato de dos decimales
 
-                    # Mostrar el resultado de la predicción
-                st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')  
+                # Mostrar el resultado de la predicción
+                st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
+
+                # Crear el diccionario con los datos
+                prediction_id = uuid.uuid4().int
+                data = {
+                    'prediction_id': prediction_id,
+                    'peso_sem4': feature_1,
+                    'agua': feature_2,
+                    'peso_sem3': feature_3,
+                    'consumo_acabado': feature_4,
+                    'mortalidad_std': feature_5,
+                    'created_at': created_at,
+                    'prediction': prediction
+                }
+
+                # Mostrar el diccionario en un formato legible
+                st.write("### Datos a guardar:")
+                st.json(data)  # Usa st.json para mostrar el diccionario en formato JSON
+
+                # Guardar los datos
+                crear_prediccion(data)
+                st.success('Guardado')
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
-            prediction_id = uuid.uuid4().int
-            data = {
-                    'prediction_id':prediction_id,
-                    'peso_sem4':feature_1,
-                    'agua':feature_2,
-                    'peso_sem3':feature_3,
-                    'consumo_acabado':feature_4,
-                    'mortalidad_std':feature_5,
-                    'created_at':created_at,
-                    'prediction':prediction,
-                }
-            
-            st.json(data)
-            crear_prediccion(data)
-            st.success('Guardado')
 
 
 '''
