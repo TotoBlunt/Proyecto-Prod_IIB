@@ -194,11 +194,11 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     elif page == "Predicción":
         st.title("Aplicación de Prediccion")
         # Entradas de datos para las características
-        feature_1 = st.number_input('Ingresa el valor para PesoSem4', format="%.3f")
-        feature_2 = st.number_input('Ingresa el valor para Agua', format="%.3f")
-        feature_3 = st.number_input('Ingresa el valor para PesoSem3', format="%.3f")
-        feature_4 = st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f")
-        feature_5 = st.number_input('Ingresa el valor para MortStd', format="%.3f")
+        feature_1 = float(st.number_input('Ingresa el valor para PesoSem4', format="%.3f"))
+        feature_2 = float(st.number_input('Ingresa el valor para Agua', format="%.3f"))
+        feature_3 = float(st.number_input('Ingresa el valor para PesoSem3', format="%.3f"))
+        feature_4 = float(st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f"))
+        feature_5 = float(st.number_input('Ingresa el valor para MortStd', format="%.3f"))
         created_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
 
         # Botón para realizar la predicción
@@ -215,36 +215,32 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 # Mostrar el resultado de la predicción
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
 
-                # Crear el diccionario con los datos
-                prediction_id = uuid.uuid4().int
-                data = {
-                    'prediction_id': prediction_id,
-                    'peso_sem4': feature_1,
-                    'agua': feature_2,
-                    'peso_sem3': feature_3,
-                    'consumo_acabado': feature_4,
-                    'mortalidad_std': feature_5,
-                    'created_at': created_at,
-                    'prediction': prediction,
-                }
+        # Crear el diccionario con los datos
+        prediction_id = uuid.uuid4().hex
+        created_at = datetime.utcnow().isoformat()
+        data = {
+            'prediction_id': prediction_id,
+            'peso_sem4': feature_1,
+            'agua': feature_2,
+            'peso_sem3': feature_3,
+            'consumo_acabado': feature_4,
+            'mortalidad_std': feature_5,
+            'created_at': created_at,
+            'prediction': prediction,
+        }
 
-                # Mostrar el diccionario en un formato legible
-                st.write("### Datos a guardar:")
-                st.json(data)  # Usa st.json para mostrar el diccionario en formato JSON
+        # Mostrar el diccionario en un formato legible
+        st.write("### Datos a guardar:")
+        st.json(data)
 
-                # Convertir el diccionario a JSON antes de enviarlo a Supabase
-                try:
-                    data_json = json.dumps(data)
-                    st.write("### Datos en formato JSON:", data_json)  # Depuración
-                except Exception as e:
-                    st.error(f"Error al convertir el diccionario a JSON: {e}")
-                    return
-
-                # Guardar los datos
-                crear_prediccion(data)
-                st.success('Guardado')
-            else:
-                st.error("### Por favor, ingresa valores válidos para todas las características.")
+        # Guardar los datos en Supabase
+        try:
+            crear_prediccion(data)
+            st.success(f'Predicción guardada exitosamente con ID: {prediction_id}')
+        except Exception as e:
+            st.error(f"Error al guardar en Supabase: {e}")
+    else:
+        st.error("### Por favor, ingresa valores válidos para todas las características.")
 '''
 def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
     # Selección de página

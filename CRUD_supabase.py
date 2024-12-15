@@ -30,7 +30,7 @@ def crear_prediccion(predicction_data: dict):
     except Exception as e:
         st.error(f"Error inesperado: {e}")
     
-
+'''
 def read_prediccion():
     st.subheader('Leer Registro')
     response = client.table('datos_predicciones').select('*').eq('id',prediction_id).execute()
@@ -66,3 +66,4 @@ def main_menu():
         delete_prediccion()
     elif choice == "Listar Todos los Registros":
         listar_registros()
+        '''
