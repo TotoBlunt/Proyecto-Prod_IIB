@@ -225,9 +225,9 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             st.write(datos)
 
             # Guardar los datos en Supabase
-        try:
-            crear_prediccion(datos)
-        except Exception as e:
-            st.error(f"Error al guardar en Supabase: {e}")
+            try:
+                crear_prediccion(datos)
+            except Exception as e:
+                st.error(f"Error al guardar en Supabase: {e}")
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
