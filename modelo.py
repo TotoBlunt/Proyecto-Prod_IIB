@@ -225,21 +225,26 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                     'consumo_acabado': feature_4,
                     'mortalidad_std': feature_5,
                     'created_at': created_at,
-                    'prediction': prediction
+                    'prediction': prediction,
                 }
 
                 # Mostrar el diccionario en un formato legible
                 st.write("### Datos a guardar:")
                 st.json(data)  # Usa st.json para mostrar el diccionario en formato JSON
 
+                # Convertir el diccionario a JSON antes de enviarlo a Supabase
+                try:
+                    data_json = json.dumps(data)
+                    st.write("### Datos en formato JSON:", data_json)  # Depuración
+                except Exception as e:
+                    st.error(f"Error al convertir el diccionario a JSON: {e}")
+                    return
+
                 # Guardar los datos
                 crear_prediccion(data)
                 st.success('Guardado')
             else:
                 st.error("### Por favor, ingresa valores válidos para todas las características.")
-
-
-'''
 def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
     # Selección de página
     page = st.selectbox("### Selecciona una opción", ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo'])
