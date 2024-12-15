@@ -1,4 +1,4 @@
-from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,aplicar_estilos
+from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones
 import streamlit as st
 from estilos import aplicar_estilos
 
