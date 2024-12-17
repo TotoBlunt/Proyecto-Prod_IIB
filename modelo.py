@@ -232,7 +232,7 @@ def prediccion(modelo,input_data,datos):
     datos = json.dumps(datos)
     # Mostrar el resultado de la predicción
     st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
-    st.write(datos)
+    #st.write(datos)
     return datos  
         
 

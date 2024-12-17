@@ -11,30 +11,30 @@ Client = create_client(supabase_url,supabase_key)
 
 def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
-    try:
+    #try:
         # Mostrar los datos que se van a insertar (opcional)
-        st.write("Datos a insertar:", predicction_data)
+    st.write("Datos a insertar:", predicction_data)
 
         # Convertir el diccionario a JSON
-        json_data = json.loads(predicction_data)  # json.dumps crea el formato correcto
+    json_data = json.loads(predicction_data)  # json.dumps crea el formato correcto
         #st.write("Datos en formato JSON_loads:", json_data)
 
         # Insertar datos en Supabase
-        response = Client.table('datos_predicciones').insert(json_data).execute()
+    response = Client.table('datos_predicciones').insert(json_data).execute()
 
         # Mostrar la respuesta completa para depuración (opcional)
         #st.write("Respuesta de Supabase:", response)
 
         # Verificar si la operación fue exitosa
-        if response.data:
-            st.success('Registro creado con éxito')
-        elif response.error:
-            st.error(f"Error al crear el registro: {response.error}")
-        else:
-            st.error("Respuesta inesperada de Supabase")
+    if response.data:
+        st.success('Registro creado con éxito')
+    elif response.error:
+        st.error(f"Error al crear el registro: {response.error}")
+    else:
+        st.error("Respuesta inesperada de Supabase")
 
-    except Exception as e:
-        st.error(f"Error inesperado: {e}")
+    #except Exception as e:
+     #   st.error(f"Error inesperado: {e}")
 
     
 '''
