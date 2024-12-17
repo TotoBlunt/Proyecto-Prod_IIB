@@ -14,10 +14,13 @@ def crear_prediccion(predicction_data):
     try:
         # Mostrar los datos que se van a insertar (opcional)
         st.write("Datos a insertar:", predicction_data)
-        predicction_data = json.dumps(predicction_data,indent=4)
-        data = json.loads(predicction_data)
+
+        # Convertir el diccionario a JSON
+        json_data = json.dumps(predicction_data)  # json.dumps crea el formato correcto
+        st.write("Datos en formato JSON:", json_data)
+
         # Insertar datos en Supabase
-        response = Client.table('datos_predicciones').insert(data).execute()
+        response = Client.table('datos_predicciones').insert(json.loads(json_data)).execute()
 
         # Mostrar la respuesta completa para depuración (opcional)
         st.write("Respuesta de Supabase:", response)
@@ -32,6 +35,7 @@ def crear_prediccion(predicction_data):
 
     except Exception as e:
         st.error(f"Error inesperado: {e}")
+
     
 '''
 def read_prediccion():
