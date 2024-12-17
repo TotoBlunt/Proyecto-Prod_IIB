@@ -34,7 +34,7 @@ def crear_prediccion(predicction_data):
             st.error("Respuesta inesperada de Supabase")
 
     except Exception as e:
-        st.error(f" ")
+        st.error(f" {e}")
 
     
 '''
