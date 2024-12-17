@@ -157,10 +157,13 @@ def modelo_ensemble(top5,df):
     df['Peso Prom Final Predicho'] = modelo.predict(x_model)
     return modelo,y_pred_model,y_test_model,x_train_model,y_train_model
         
+
 def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
+    # Inicializar datos como None
+    datos = None
+
     # Selección de página
     page = st.selectbox("### Selecciona una opción", ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo'])
-
 
     if page == 'Metricas de Evaluacion del Modelo':
         # Calcular métricas de evaluación
@@ -213,26 +216,25 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 # Hacer la predicción con el modelo
                 prediction = modelo.predict(input_data)
                 prediction = round(prediction[0], 2)  # Formato de dos decimales
-                #Diccionario
-                datos = {'id':feature_6,'peso_sem4':feature_1,'agua':feature_2,'peso_sem3':feature_3,'consumo_acabado':feature_4,'mortalidad_std':feature_5,'prediction':prediction,'created_at':created_at}
+                # Diccionario
+                datos = {
+                    'id': feature_6,
+                    'peso_sem4': feature_1,
+                    'agua': feature_2,
+                    'peso_sem3': feature_3,
+                    'consumo_acabado': feature_4,
+                    'mortalidad_std': feature_5,
+                    'prediction': prediction,
+                    'created_at': created_at
+                }
                 # Mostrar el resultado de la predicción
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
                 # Mostrar el diccionario en un formato legible
                 st.write("### Datos a guardar:")
                 st.write(datos)
-                return datos
-        '''
-                
-        
-            # Botón para guardar los datos
-        if st.button('Guardar'):
-                    # Verificar si datos está definido antes de intentar guardar
-                    
-            try:
-                crear_prediccion(datos)
-                st.success("Datos guardados correctamente en Supabase.")
-            except Exception as e:
-                st.error(f"Error al guardar en Supabase: {e}")
-        '''
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
+    # Retornar datos solo si se realizó una predicción
+    return datos
+        
+   
