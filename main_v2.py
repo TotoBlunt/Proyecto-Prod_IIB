@@ -17,8 +17,8 @@ if df is not None:
         datos = menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_model)
         st.write(datos)
         #if st.button('Guardar'):
-         #   crear_prediccion(datos)
-          #  st.success('Datos guardados correctamente')
+        crear_prediccion(datos)
+        st.success('Datos guardados correctamente')
 
 else:
     st.write("No se ha cargado ningún archivo.")
