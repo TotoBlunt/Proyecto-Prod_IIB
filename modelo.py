@@ -228,6 +228,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             st.write(datos)
 
             # Guardar los datos en Supabase
+        if st.button('Guardar'):
             try:
                 crear_prediccion(datos)
             except Exception as e:
