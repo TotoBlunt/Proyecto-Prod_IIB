@@ -220,11 +220,11 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 # Mostrar el resultado de la predicción
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
             
-
+                return datos
         # Mostrar el diccionario en un formato legible
             st.write("### Datos a guardar:")
             st.write(datos)
-        
+        '''
             # Botón para guardar los datos
         if st.button('Guardar'):
                     # Verificar si datos está definido antes de intentar guardar
@@ -234,5 +234,5 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 st.success("Datos guardados correctamente en Supabase.")
             except Exception as e:
                 st.error(f"Error al guardar en Supabase: {e}")
-                
-        st.error("### Por favor, ingresa valores válidos para todas las características.")
+                '''
+    st.error("### Por favor, ingresa valores válidos para todas las características.")

@@ -2,9 +2,11 @@ from supabase_connector import inicializar_supabase
 import os
 import streamlit as st
 import json
+from supabase import create_client, Client
 
-
-client = inicializar_supabase()
+supabase_url = os.getenv('SUPABASE_URL')
+supabase_key = os.getenv('SUPABASE_KEY')
+Client = create_client(supabase_url,supabase_key)
 
 
 def crear_prediccion(predicction_data: dict):
@@ -14,7 +16,7 @@ def crear_prediccion(predicction_data: dict):
         st.write("Datos a insertar:", predicction_data)
         predicction_data = json.dumps(predicction_data,indent=4)
         # Insertar datos en Supabase
-        response = client.table('datos_predicciones').insert(predicction_data).execute()
+        response = Client.table('datos_predicciones').insert(predicction_data).execute()
 
         # Mostrar la respuesta completa para depuración (opcional)
         st.write("Respuesta de Supabase:", response)
