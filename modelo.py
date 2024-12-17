@@ -223,7 +223,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     st.write(datos)
     return input_data,datos
         
-def prediccion(modelo,array,datos):
+def prediccion(modelo,input_data,datos):
       
     prediction = modelo.predict(input_data)
     prediction = round(prediction[0], 2)  # Formato de dos decimales
