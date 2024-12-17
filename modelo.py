@@ -214,7 +214,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 prediction = modelo.predict(input_data)
                 prediction = round(prediction[0], 2)  # Formato de dos decimales
                 #Diccionario
-                datos = {'id':feature_6,'peso_sem4':feature_1,'agua':feature_2,'peso_sem3':feature_3,'consumo_acabado':feature_4,'mortalidad_std':feature_5,'prediction':prediction}
+                datos = {'id':feature_6,'peso_sem4':feature_1,'agua':feature_2,'peso_sem3':feature_3,'consumo_acabado':feature_4,'mortalidad_std':feature_5,'prediction':prediction,'created_at':created_at}
                 # Mostrar el resultado de la predicción
                 st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
             
