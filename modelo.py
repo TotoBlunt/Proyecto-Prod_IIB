@@ -229,6 +229,7 @@ def prediccion(modelo,input_data,datos):
     prediction = round(prediction[0], 2)  # Formato de dos decimales
     # Diccionario
     datos['prediction'] = prediction
+    datos = json.dumps(datos)
     # Mostrar el resultado de la predicción
     st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
     st.write(datos)
