@@ -161,6 +161,9 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     # Selección de página
     page = st.selectbox("### Selecciona una opción", ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo'])
 
+    # Inicializar la variable datos como None
+    datos = None
+
     if page == 'Metricas de Evaluacion del Modelo':
         # Calcular métricas de evaluación
         st.write('### Metricas de Evaluacion del "Modelo Final(VotingRegresor)":\n')
@@ -221,11 +224,18 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             # Mostrar el diccionario en un formato legible
             st.write("### Datos a guardar:")
             st.write(datos)
+        
+        # Botón para guardar los datos
         if st.button('Guardar'):
-            # Guardar los datos en Supabase
-            try:
-                crear_prediccion(datos)
-            except Exception as e:
-                st.error(f"Error al guardar en Supabase: {e}")
+            # Verificar si datos está definido antes de intentar guardar
+            if datos is not None:
+                # Guardar los datos en Supabase
+                try:
+                    crear_prediccion(datos)
+                    st.success("Datos guardados correctamente en Supabase.")
+                except Exception as e:
+                    st.error(f"Error al guardar en Supabase: {e}")
+            else:
+                st.error("No hay datos para guardar. Por favor, realiza una predicción primero.")
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
