@@ -160,7 +160,7 @@ def modelo_ensemble(top5,df):
 
 def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
     # Inicializar datos como None
-    datos = None
+    #datos = None
 
     # Selección de página
     page = st.selectbox("### Selecciona una opción", ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo'])
@@ -205,36 +205,35 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
         feature_5 = float(st.number_input('Ingresa el valor para MortStd', format="%.3f"))
         created_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
         feature_6 = str(uuid.uuid4())
-        
-        # Botón para realizar la predicción
-        if st.button('Realizar Predicción'):
-            # Validar que las entradas no estén vacías
-            if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
-                # Crear el array con los datos de entrada
-                input_data = np.array([[feature_1, feature_2, feature_3, feature_4, feature_5]])
-
-                # Hacer la predicción con el modelo
-                prediction = modelo.predict(input_data)
-                prediction = round(prediction[0], 2)  # Formato de dos decimales
-                # Diccionario
-                datos = {
+        if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
+            # Crear el array con los datos de entrada
+            input_data = np.array([[feature_1, feature_2, feature_3, feature_4, feature_5]])
+       # Diccionario
+        datos = {
                     'id': feature_6,
                     'peso_sem4': feature_1,
                     'agua': feature_2,
                     'peso_sem3': feature_3,
                     'consumo_acabado': feature_4,
                     'mortalidad_std': feature_5,
-                    'prediction': prediction,
                     'created_at': created_at
                 }
-                # Mostrar el resultado de la predicción
-                st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
-                # Mostrar el diccionario en un formato legible
-                st.write("### Datos a guardar:")
-                st.write(datos)
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
-    # Retornar datos solo si se realizó una predicción
-    return datos
+    st.write(datos)
+    return input_data,datos
+        
+def prediccion(modelo,array,datos):
+      
+    prediction = modelo.predict(input_data)
+    prediction = round(prediction[0], 2)  # Formato de dos decimales
+    # Diccionario
+    datos['prediction'] = prediction
+    # Mostrar el resultado de la predicción
+    st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
+    st.write(datos)
+    return datos  
+        
+
         
    
