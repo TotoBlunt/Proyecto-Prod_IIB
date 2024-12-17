@@ -203,7 +203,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
         feature_3 = float(st.number_input('Ingresa el valor para PesoSem3', format="%.3f"))
         feature_4 = float(st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f"))
         feature_5 = float(st.number_input('Ingresa el valor para MortStd', format="%.3f"))
-        created_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
+        created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
         feature_6 = str(uuid.uuid4())
         if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
             # Crear el array con los datos de entrada
