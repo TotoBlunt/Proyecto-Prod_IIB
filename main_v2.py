@@ -30,8 +30,8 @@ if df is not None:
             st.session_state['datos_edit'] = prediccion(modelo, input_data, datos)
 
             # Mostrar los datos predichos
-            st.write("### Resultado de la predicción:")
-            st.write(st.session_state['datos_edit'])
+            #st.write("### Resultado de la predicción:")
+            #st.write(st.session_state['datos_edit'])
 
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
