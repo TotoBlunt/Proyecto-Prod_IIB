@@ -196,7 +196,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
         # Entradas de datos para las características
         feature_1 = float(st.number_input('Ingresa el valor para PesoSem4', format="%.3f"))
         feature_2 = float(st.number_input('Ingresa el valor para Agua', format="%.3f"))
-        feature_3 = float(st.number_input('Ingresa el valor para PesoSem3', format="%.3f")),
+        feature_3 = float(st.number_input('Ingresa el valor para PesoSem3', format="%.3f"))
         feature_4 = float(st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f"))
         feature_5 = float(st.number_input('Ingresa el valor para MortStd', format="%.3f"))
         created_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
