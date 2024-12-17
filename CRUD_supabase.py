@@ -20,7 +20,7 @@ def crear_prediccion(predicction_data):
         st.write("Datos en formato JSON:", json_data)
 
         # Insertar datos en Supabase
-        response = Client.table('datos_predicciones').insert(json.loads(json_data)).execute()
+        response = Client.table('datos_predicciones').insert(json_data).execute()
 
         # Mostrar la respuesta completa para depuración (opcional)
         st.write("Respuesta de Supabase:", response)
