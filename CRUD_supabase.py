@@ -17,13 +17,13 @@ def crear_prediccion(predicction_data):
 
         # Convertir el diccionario a JSON
         json_data = json.loads(predicction_data)  # json.dumps crea el formato correcto
-        st.write("Datos en formato JSON_loads:", json_data)
+        #st.write("Datos en formato JSON_loads:", json_data)
 
         # Insertar datos en Supabase
         response = Client.table('datos_predicciones').insert(json_data).execute()
 
         # Mostrar la respuesta completa para depuración (opcional)
-        st.write("Respuesta de Supabase:", response)
+        #st.write("Respuesta de Supabase:", response)
 
         # Verificar si la operación fue exitosa
         if response.data:
