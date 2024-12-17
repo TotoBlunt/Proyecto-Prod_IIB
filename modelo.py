@@ -226,16 +226,16 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
             st.write(datos)
         
         # Botón para guardar los datos
-        if st.button('Guardar'):
-            # Verificar si datos está definido antes de intentar guardar
-            if datos is not None:
-                # Guardar los datos en Supabase
-                try:
-                    crear_prediccion(datos)
-                    st.success("Datos guardados correctamente en Supabase.")
-                except Exception as e:
-                    st.error(f"Error al guardar en Supabase: {e}")
-            else:
-                st.error("No hay datos para guardar. Por favor, realiza una predicción primero.")
+            if st.button('Guardar'):
+                # Verificar si datos está definido antes de intentar guardar
+                if datos is not None:
+                    # Guardar los datos en Supabase
+                    try:
+                        crear_prediccion(datos)
+                        st.success("Datos guardados correctamente en Supabase.")
+                    except Exception as e:
+                        st.error(f"Error al guardar en Supabase: {e}")
+                else:
+                    st.error("No hay datos para guardar. Por favor, realiza una predicción primero.")
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
