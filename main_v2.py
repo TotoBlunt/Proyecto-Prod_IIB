@@ -15,11 +15,11 @@ if df is not None:
     if top5:
         modelo,y_pred_model,y_test_model,x_train_model,y_train_model = modelo_ensemble(top5,df)
         input_data,datos = menu_opciones(modelo,y_pred_model,y_test_model,df,x_train_model,y_train_model)
-        if st.button('Predecir'):
+        if st.button('Realizar Prediccion'):
             datos_edit = prediccion(modelo,input_data,datos)
-            if st.button('Guardar'):
-                crear_prediccion(datos_edit)
-                st.success('Datos guardados correctamente')
+        if st.button('Guardar'):
+            crear_prediccion(datos_edit)
+            st.success('Datos guardados correctamente')
 
 else:
     st.write("No se ha cargado ningún archivo.")
