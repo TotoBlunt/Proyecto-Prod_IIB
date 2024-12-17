@@ -220,7 +220,7 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                 }
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
-    st.write(datos)
+    #st.write(datos)
     return input_data,datos
         
 def prediccion(modelo,input_data,datos):
