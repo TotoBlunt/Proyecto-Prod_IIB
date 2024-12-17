@@ -9,7 +9,7 @@ supabase_key = os.getenv('SUPABASE_KEY')
 Client = create_client(supabase_url,supabase_key)
 
 
-def crear_prediccion(predicction_data: dict):
+def crear_prediccion(predicction_data):
     st.subheader('Ingresar registro')
     try:
         # Mostrar los datos que se van a insertar (opcional)
