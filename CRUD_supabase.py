@@ -13,7 +13,7 @@ def crear_prediccion(predicction_data):
     st.subheader('Ingresando registro...')
     try:
         # Mostrar los datos que se van a insertar (opcional)
-        st.write("## Datos a insertar:", json.dumps(predicction_data,indent=4))
+        #st.write("## Datos a insertar:", json.dumps(predicction_data,indent=4))
 
         # Convertir el diccionario a JSON
         json_data = json.loads(predicction_data)  # json.dumps crea el formato correcto
