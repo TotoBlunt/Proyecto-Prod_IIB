@@ -22,10 +22,10 @@ def geolocalizar_ip():
         console.error('Error al obtener la ubicación:', error);
         document.getElementById('location').innerText = 'No se pudo obtener la ubicación.';
     });
-"""
+    """
 
-# Mostrar la ubicación en Streamlit
-st.write(f'<div id="location">Obteniendo ubicación...</div><script>{js_code}</script>', unsafe_allow_html=True
+    # Mostrar la ubicación en Streamlit
+    st.write(f'<div id="location">Obteniendo ubicación...</div><script>{js_code}</script>', unsafe_allow_html=True)
     '''
     try:
         # Realizar la solicitud HTTP GET
