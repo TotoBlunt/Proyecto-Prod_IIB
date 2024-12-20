@@ -1,6 +1,7 @@
 import socket
 import urllib.request
 import requests
+import streamlit as st
 
 def obtener_IPpublica():
     ip_public = urllib.request.urlopen('https://ident.me').read().decode('utf8')
@@ -9,7 +10,7 @@ def obtener_IPpublica():
 def geolocalizar_ip(ip):
     # URL de la API de ipinfo.io con la IP publica específica
     url = f"https://ipinfo.io/{ip}/json"
-    
+    st.write(ip)
     try:
         # Realizar la solicitud HTTP GET
         respuesta = requests.get(url)
