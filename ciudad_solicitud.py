@@ -1,5 +1,5 @@
 import socket
-import urllib.requests 
+import urllib.request
 
 def obtener_IPpublica():
     ip_public = urllib.requests.urlopen('https://ident.me').read().decode('utf8')
