@@ -2,7 +2,7 @@ import socket
 import urllib.request
 
 def obtener_IPpublica():
-    ip_public = urllib.requests.urlopen('https://ident.me').read().decode('utf8')
+    ip_public = urllib.request.urlopen('https://ident.me').read().decode('utf8')
     return ip_public
 
 def geolocalizar_ip(ip_public):
