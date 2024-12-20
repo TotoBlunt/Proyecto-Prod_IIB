@@ -224,13 +224,10 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     return input_data,datos
         
 def prediccion(modelo,input_data,datos):
-    ip_public = obtener_IPpublica()
-    ciudad = geolocalizar_ip()
     prediction = modelo.predict(input_data)
     prediction = round(prediction[0], 2)  # Formato de dos decimales
     # Diccionario
     datos['prediction'] = prediction
-    datos['ciudad'] = ciudad
     datos = json.dumps(datos)
     # Mostrar el resultado de la predicción
     st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
