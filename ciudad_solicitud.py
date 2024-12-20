@@ -6,7 +6,7 @@ def obtener_IPpublica():
     ip_public = urllib.request.urlopen('https://ident.me').read().decode('utf8')
     return ip_public
 
-def geolocalizar_ip(ip_public):
+def geolocalizar_ip(ip):
     # URL de la API de ipinfo.io con la IP publica específica
     url = f"https://ipinfo.io/{ip}/json"
     
