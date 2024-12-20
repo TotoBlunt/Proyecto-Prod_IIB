@@ -11,17 +11,21 @@ def geolocalizar_ip():
     # URL de la API de ipinfo.io con la IP publica específica
     #url = f"https://ipinfo.io/{ip}/json"
 
-    # Código JavaScript para obtener la ubicación
+    # Código JavaScript para obtener la ubicación del usuario
     js_code = """
     fetch('https://ipinfo.io/json')
     .then(response => response.json())
     .then(data => {
         document.getElementById('location').innerText = `Tu ubicación es: ${data.city}, ${data.country}`;
+    })
+    .catch(error => {
+        console.error('Error al obtener la ubicación:', error);
+        document.getElementById('location').innerText = 'No se pudo obtener la ubicación.';
     });
-    """
+"""
 
-    # Mostrar la ubicación en Streamlit
-    st.write(f'<div id="location">Obteniendo ubicación...</div><script>{js_code}</script>', unsafe_allow_html=True)
+# Mostrar la ubicación en Streamlit
+st.write(f'<div id="location">Obteniendo ubicación...</div><script>{js_code}</script>', unsafe_allow_html=True
     '''
     try:
         # Realizar la solicitud HTTP GET
