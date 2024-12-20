@@ -9,7 +9,7 @@ def obtener_IPpublica():
 
 def geolocalizar_ip():
     # URL de la API de ipinfo.io con la IP publica específica
-    url = f"https://ipinfo.io/{ip}/json"
+    #url = f"https://ipinfo.io/{ip}/json"
 
     # Código JavaScript para obtener la ubicación
     js_code = """
@@ -22,6 +22,7 @@ def geolocalizar_ip():
 
     # Mostrar la ubicación en Streamlit
     st.write(f'<div id="location">Obteniendo ubicación...</div><script>{js_code}</script>', unsafe_allow_html=True)
+    '''
     try:
         # Realizar la solicitud HTTP GET
         respuesta = requests.get(url)
@@ -38,4 +39,4 @@ def geolocalizar_ip():
         
 
     except requests.exceptions.RequestException as e:
-        print(f"Error al conectarse a la API: {e}")
+        print(f"Error al conectarse a la API: {e}")'''
