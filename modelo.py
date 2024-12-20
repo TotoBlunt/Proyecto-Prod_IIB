@@ -18,6 +18,7 @@ from datetime import datetime
 from CRUD_supabase import crear_prediccion
 import json
 import uuid
+from ciudad_solicitud import obtener_IPpublica,geolocalizar_ip
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
@@ -223,11 +224,13 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     return input_data,datos
         
 def prediccion(modelo,input_data,datos):
-      
+    ip_public = obtener_IPpublica()
+    ciudad = geolocalizar_ip(ip_public)
     prediction = modelo.predict(input_data)
     prediction = round(prediction[0], 2)  # Formato de dos decimales
     # Diccionario
     datos['prediction'] = prediction
+    datos['ciudad'] = ciudad
     datos = json.dumps(datos)
     # Mostrar el resultado de la predicción
     st.write(f'### La predicción del modelo para Peso Final es : {prediction} kg')
