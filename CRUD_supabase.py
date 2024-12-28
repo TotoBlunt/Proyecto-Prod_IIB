@@ -36,6 +36,22 @@ def crear_prediccion(predicction_data):
     except Exception as e:
         st.error(f" {e}")
 
+def listar_registros():
+    st.subheader('Listar todos los registros')
+    try:
+        # Obtener los datos de la tabla 'datos_predicciones'
+        response = client.table('datos_predicciones').select('*').execute()
+        
+        # Verificar si la respuesta contiene datos
+        if response.data:
+            # Mostrar los datos en una tabla en Streamlit
+            st.table(response.data)
+        else:
+            st.write("No hay registros para mostrar.")
+    
+    except Exception as e:
+        st.error(f"Ocurrió un error al listar los registros: {e}")
+
     
 '''
 def read_prediccion():

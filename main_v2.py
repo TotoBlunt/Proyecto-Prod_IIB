@@ -1,7 +1,7 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,prediccion
 from CRUD_supabase import crear_prediccion
 import streamlit as st
-from estilos import aplicar_estilos
+from estilos import aplicar_estilos,listar_registros
 
 aplicar_estilos()
 #Titulo para el app
@@ -42,6 +42,10 @@ if df is not None:
                 st.success('Datos guardados correctamente en Supabase.')
                 # Limpiar el estado después de guardar
                 st.session_state['datos_edit'] = None
+            
+            if st.button('Listar Registro'):
+                listar_registros()
+
                 
 
 else:
