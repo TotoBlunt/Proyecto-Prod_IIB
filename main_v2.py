@@ -45,8 +45,6 @@ if df is not None:
                 # Limpiar el estado después de guardar
                 st.session_state['datos_edit'] = None
             
-            if st.button('Listar Registro'):
-                listar_registros()
 
                 
 
