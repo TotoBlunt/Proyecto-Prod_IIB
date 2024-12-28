@@ -17,8 +17,8 @@ import numpy as np
 from datetime import datetime
 from CRUD_supabase import crear_prediccion
 import json
-import uuid
-from ciudad_solicitud import obtener_IPpublica,geolocalizar_ip
+
+
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
