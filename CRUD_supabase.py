@@ -40,7 +40,7 @@ def listar_registros():
     st.subheader('Listar todos los registros')
     try:
         # Obtener los datos de la tabla 'datos_predicciones'
-        response = client.table('datos_predicciones').select('*').execute()
+        response = Client.table('datos_predicciones').select('*').execute()
         
         # Verificar si la respuesta contiene datos
         if response.data:
