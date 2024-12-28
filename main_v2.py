@@ -1,7 +1,7 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,prediccion
-from CRUD_supabase import crear_prediccion
+from CRUD_supabase import crear_prediccion,listar_registros
 import streamlit as st
-from estilos import aplicar_estilos,listar_registros
+from estilos import aplicar_estilos
 
 aplicar_estilos()
 #Titulo para el app
