@@ -36,6 +36,15 @@ def crear_prediccion(predicction_data):
     except Exception as e:
         st.error(f" {e}")
 
+def verificar_registros():
+    """Verifica si hay al menos un registro en la tabla 'datos_predicciones'."""
+    try:
+        response = Client.table('datos_predicciones').select('*').limit(1).execute()
+        return len(response.data) > 0
+    except Exception as e:
+        st.error(f"Ocurrió un error al verificar los registros: {e}")
+        return False
+
 def listar_registros():
     st.subheader('Listar todos los registros')
     try:

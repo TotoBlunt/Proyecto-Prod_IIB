@@ -1,5 +1,5 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,prediccion
-from CRUD_supabase import crear_prediccion,listar_registros
+from CRUD_supabase import crear_prediccion,listar_registros,verificar_registros
 import streamlit as st
 from estilos import aplicar_estilos
 
@@ -32,12 +32,14 @@ if df is not None:
             # Mostrar los datos predichos
             #st.write("### Resultado de la predicción:")
             #st.write(st.session_state['datos_edit'])
-
+        if verificar_registros():
+            if st.button('Listar Registro'):
+                listar_registros()
+            
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
             # Botón para guardar los datos en Supabase
             if st.button('Guardar'):
-                
                 crear_prediccion(st.session_state['datos_edit'])
                 st.success('Datos guardados correctamente en Supabase.')
                 # Limpiar el estado después de guardar
