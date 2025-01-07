@@ -20,7 +20,7 @@ def crear_prediccion(predicction_data):
         #st.write("Datos en formato JSON_loads:", json_data)
 
         # Insertar datos en Supabase
-        response = Client.table('datos_predicciones').insert(json_data).execute()
+        response = Client.table('predicciones').insert(json_data).execute()
 
         # Mostrar la respuesta completa para depuración (opcional)
         #st.write("Respuesta de Supabase:", response)
@@ -39,7 +39,7 @@ def crear_prediccion(predicction_data):
 def verificar_registros():
     """Verifica si hay al menos un registro en la tabla 'datos_predicciones'."""
     try:
-        response = Client.table('datos_predicciones').select('*').limit(1).execute()
+        response = Client.table('predicciones').select('*').limit(1).execute()
         return len(response.data) > 0
     except Exception as e:
         st.error(f"Ocurrió un error al verificar los registros: {e}")
@@ -49,7 +49,7 @@ def listar_registros():
     st.subheader('Listar todos los registros')
     try:
         # Obtener los datos de la tabla 'datos_predicciones'
-        response = Client.table('datos_predicciones').select('*').execute()
+        response = Client.table('predicciones').select('*').execute()
         
         # Verificar si la respuesta contiene datos
         if response.data:
