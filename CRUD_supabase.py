@@ -16,7 +16,7 @@ def crear_prediccion(predicction_data):
         #st.write("## Datos a insertar:", json.dumps(predicction_data,indent=4))
 
         # Convertir el diccionario a JSON
-        json_data = json.loads(predicction_data)  # json.dumps crea el formato correcto
+        json_data = predicction_data  # json.dumps crea el formato correcto
         #st.write("Datos en formato JSON_loads:", json_data)
 
         # Insertar datos en Supabase
