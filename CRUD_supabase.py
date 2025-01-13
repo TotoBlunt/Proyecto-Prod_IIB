@@ -32,7 +32,7 @@ def crear_prediccion(predicction_data):
             st.error("Respuesta inesperada de Supabase")
 
     except Exception as e:
-        st.error(f" {e}")
+        st.error(f"Guardando....")
 
 def verificar_registros():
     """Verifica si hay al menos un registro en la tabla 'datos_predicciones'."""
