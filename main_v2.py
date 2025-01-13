@@ -39,12 +39,13 @@ if df is not None:
             if st.button('Elminar Registro'):
                 # Campo para ingresar el ID a eliminar
                 prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
-                if eliminar_prediccion(prediccion_id):
-                    st.success(f"Registro {prediccion_id} eliminado correctamente.")
-                    # Actualizar la lista de registros después de eliminar
-                    st.experimental_rerun()
-                else:
-                    st.error("Error al eliminar el registro. Verifica que el ID sea correcto.")
+                if st.button('Eliminar'):
+                    if eliminar_prediccion(prediccion_id):
+                        st.success(f"Registro {prediccion_id} eliminado correctamente.")
+                        # Actualizar la lista de registros después de eliminar
+                        st.experimental_rerun()
+                    else:
+                        st.error("Error al eliminar el registro. Verifica que el ID sea correcto.")
             
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
