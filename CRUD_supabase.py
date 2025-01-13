@@ -59,6 +59,20 @@ def listar_registros():
     except Exception as e:
         st.error(f"Ocurrió un error al listar los registros: {e}")
 
+def eliminar_prediccion(prediccion_id):
+    """
+    Elimina una predicción de la base de datos Supabase por su ID.
+    
+    :param prediccion_id: ID de la predicción a eliminar.
+    :return: True si la eliminación fue exitosa, False en caso contrario.
+    """
+    try:
+        # Eliminar el registro con el ID proporcionado
+        supabase.table('predicciones').delete().eq('id', prediccion_id).execute()
+        return True
+    except Exception as e:
+        print(f"Error al eliminar la predicción: {e}")
+        return False
     
 '''
 def read_prediccion():
