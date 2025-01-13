@@ -1,5 +1,5 @@
 from modelo import subir_archivo,seleccion_variables,modelo_ensemble,menu_opciones,prediccion
-from CRUD_supabase import crear_prediccion,listar_registros,verificar_registros
+from CRUD_supabase import crear_prediccion,listar_registros,verificar_registros,eliminar_prediccion
 import streamlit as st
 from estilos import aplicar_estilos
 
@@ -36,13 +36,13 @@ if df is not None:
         if verificar_registros():
             if st.button('Listar Registro'):
                 listar_registros()
-            
+            if st.button('Eliminar Registro'):
                 # Campo para ingresar el ID a eliminar
-            prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
-            if st.button('Eliminar'):
-                eliminar_prediccion(prediccion_id)
-                    # Actualizar la lista de registros después de eliminar
-                st.experimental_rerun()
+                prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
+                if st.button('Eliminar'):
+                    eliminar_prediccion(prediccion_id)
+                        # Actualizar la lista de registros después de eliminar
+                    st.experimental_rerun()
                    
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
