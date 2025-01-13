@@ -71,53 +71,16 @@ def eliminar_prediccion(prediccion_id):
     
     try:
         # Verificar si el registro existe antes de eliminarlo
-        response = supabase.table('predicciones').select('id_prediction').eq('id_prediction', prediccion_id).execute()
+        response = Client.table('predicciones').select('id_prediction').eq('id_prediction', prediccion_id).execute()
         if not response.data:
-            print(f"Registro con ID {prediccion_id} no encontrado.")
+            st.write(f"Registro con ID {prediccion_id} no encontrado.")
             return False
         
         # Eliminar el registro
-        supabase.table('predicciones').delete().eq('id_prediction', prediccion_id).execute()
-        print(f"Registro con ID {prediccion_id} eliminado correctamente.")
+        Client.table('predicciones').delete().eq('id_prediction', prediccion_id).execute()
+        st.write(f"Registro con ID {prediccion_id} eliminado correctamente.")
         return True
     except Exception as e:
-        print(f"Error al eliminar la predicción: {e}")
+        st.write(f"Error al eliminar la predicción: {e}")
         return False
     
-'''
-def read_prediccion():
-    st.subheader('Leer Registro')
-    response = client.table('datos_predicciones').select('*').eq('id',prediction_id).execute()
-    return response.data
-
-def update_prediccion():
-    st.subheader('Actualizar Registro')
-    new_data = new_data
-    response = client.table('datos_predicciones').update(new_data).eq('id',prediction_id).execute()
-    return response
-
-def delete_prediccion():
-    st.subheader('Eliminar Registro')
-    response = client.table('datos_predicciones').delete().eq('id',prediction_id).execute()
-    return response
-
-def listar_registros():
-    st.subheader('Listar todos los registros')
-    response = client.table('datos_predicciones').select('*').execute()
-
-def main_menu():
-    st.subheader("Menú CRUD con Streamlit y Supabase")
-    menu = ["Crear Registro", "Leer Registro", "Actualizar Registro", "Eliminar Registro", "Listar Todos los Registros"]
-    choice = st.sidebar.selectbox("Seleccione una opción", menu)
-    
-    if choice == "Crear Registro":
-        crear_prediccion()
-    elif choice == "Leer Registro":
-        read_prediccion()
-    elif choice == "Actualizar Registro":
-        update_prediccion()
-    elif choice == "Eliminar Registro":
-        delete_prediccion()
-    elif choice == "Listar Todos los Registros":
-        listar_registros()
-        '''
