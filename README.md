@@ -41,11 +41,13 @@ requests
 Desde el cmd:
 
 git clone https://github.com/tu-usuario/tu-repositorio.git
+
 cd tu-repositorio
 
 ## Ejecutar la Aplicacion
 
 Desde el cmd:
+
 streamlit run main.py
 
 ## Uso de la Aplicacion
