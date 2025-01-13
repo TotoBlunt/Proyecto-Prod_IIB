@@ -36,14 +36,13 @@ if df is not None:
         if verificar_registros():
             if st.button('Listar Registro'):
                 listar_registros()
-            if st.button('Elminar Registro'):
-                listar_registros()
+            
                 # Campo para ingresar el ID a eliminar
-                prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
-                if st.button('Eliminar'):
-                    eliminar_prediccion(prediccion_id)
+            prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
+            if st.button('Eliminar'):
+                eliminar_prediccion(prediccion_id)
                     # Actualizar la lista de registros después de eliminar
-                    st.experimental_rerun()
+                st.experimental_rerun()
                    
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
