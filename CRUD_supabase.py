@@ -66,8 +66,6 @@ def eliminar_prediccion(prediccion_id):
     :param prediccion_id: ID de la predicción a eliminar.
     :return: True si la eliminación fue exitosa, False en caso contrario.
     """
-    if not prediccion_id:
-        raise ValueError("El ID de la predicción no puede estar vacío.")
     
     try:
         # Verificar si el registro existe antes de eliminarlo
@@ -78,9 +76,9 @@ def eliminar_prediccion(prediccion_id):
         
         # Eliminar el registro
         Client.table('predicciones').delete().eq('id_prediction', prediccion_id).execute()
-        st.write(f"Registro con ID {prediccion_id} eliminado correctamente.")
+        st.sucess(f"Registro con ID {prediccion_id} eliminado correctamente.")
         return True
     except Exception as e:
-        st.write(f"Error al eliminar la predicción: {e}")
+        st.error(f"Error al eliminar la predicción: {e}")
         return False
     

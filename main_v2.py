@@ -45,7 +45,6 @@ if df is not None:
                     # Actualizar la lista de registros después de eliminar
                     st.experimental_rerun()
                    
-            
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
             # Botón para guardar los datos en Supabase
@@ -54,9 +53,6 @@ if df is not None:
                 st.success('Datos guardados correctamente en Supabase.')
                 # Limpiar el estado después de guardar
                 st.session_state['datos_edit'] = None
-            
-
-                
 
 else:
     st.write("No se ha cargado ningún archivo.")
