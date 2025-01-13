@@ -161,7 +161,6 @@ def modelo_ensemble(top5,df):
 
 def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
     # Inicializar datos como None
-    #datos = None
 
     # Selección de página
     page = st.selectbox("### Selecciona una opción", ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo'])
@@ -220,10 +219,11 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
                     'created_at': created_at,
                     'nombre':nombre
                 }
+        return input_data,datos
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
     #st.write(datos)
-    return input_data,datos
+    
         
 def prediccion(modelo,input_data,datos):
     prediction = modelo.predict(input_data)

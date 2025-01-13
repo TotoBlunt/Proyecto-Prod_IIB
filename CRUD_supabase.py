@@ -4,8 +4,6 @@ import streamlit as st
 import json
 from supabase import create_client, Client
 
-supabase_url = os.getenv('SUPABASE_URL')
-supabase_key = os.getenv('SUPABASE_KEY')
 Client = inicializar_supabase()
 
 

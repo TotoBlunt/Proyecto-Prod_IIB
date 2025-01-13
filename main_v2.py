@@ -4,6 +4,7 @@ import streamlit as st
 from estilos import aplicar_estilos
 
 aplicar_estilos()
+
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v2)")
 
