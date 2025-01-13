@@ -66,9 +66,19 @@ def eliminar_prediccion(prediccion_id):
     :param prediccion_id: ID de la predicción a eliminar.
     :return: True si la eliminación fue exitosa, False en caso contrario.
     """
+    if not prediccion_id:
+        raise ValueError("El ID de la predicción no puede estar vacío.")
+    
     try:
-        # Eliminar el registro con el ID proporcionado
+        # Verificar si el registro existe antes de eliminarlo
+        response = supabase.table('predicciones').select('id').eq('id', prediccion_id).execute()
+        if not response.data:
+            print(f"Registro con ID {prediccion_id} no encontrado.")
+            return False
+        
+        # Eliminar el registro
         supabase.table('predicciones').delete().eq('id', prediccion_id).execute()
+        print(f"Registro con ID {prediccion_id} eliminado correctamente.")
         return True
     except Exception as e:
         print(f"Error al eliminar la predicción: {e}")
