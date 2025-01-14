@@ -25,7 +25,7 @@ st.title("Proyecto Productivo para la prediccion del peso de pollos usando varia
 
 def subir_archivo():
     # Subir archivo de excel o csv
-    upload_file = st.file_uploader('Sube un archivo Excel', type=['xlsx', 'csv'],sep=';')
+    upload_file = st.file_uploader('Sube un archivo Excel o CSV', type=['xlsx', 'csv'])
 
     # Inicializar df como None
     df = None
@@ -36,7 +36,7 @@ def subir_archivo():
             if upload_file.name.endswith('.xlsx'):
                 df = pd.read_excel(upload_file)
             elif upload_file.name.endswith('.csv'):
-                df = pd.read_csv(upload_file)
+                df = pd.read_csv(upload_file,sep=';')
             else:
                 st.error("Formato de archivo no soportado. Por favor, sube un archivo Excel (xlsx) o CSV (csv).")
 
