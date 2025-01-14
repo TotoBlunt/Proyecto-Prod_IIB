@@ -103,15 +103,15 @@ if df is not None:
             if verificar_registros():
                 if st.button('Listar Registros'):
                     listar_registros()
+                
+                # Campo para ingresar el ID a eliminar
+                prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
+                
+                # Botón para confirmar la eliminación
                 if st.button('Eliminar Registro'):
-                    # Campo para ingresar el ID a eliminar
-                    prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1)
-                    if st.button('Confirmar Eliminación'):
-                        eliminar_prediccion(prediccion_id)
-                        st.success(f'Registro con ID {prediccion_id} eliminado correctamente.')
+                    if eliminar_prediccion(prediccion_id):
                         # Actualizar la lista de registros después de eliminar
                         st.experimental_rerun()
 
 else:
     st.write("No se ha cargado ningún archivo.")
-
