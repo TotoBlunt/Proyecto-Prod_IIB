@@ -159,7 +159,7 @@ def modelo_ensemble(top5,df):
     return modelo,y_pred_model,y_test_model,x_train_model,y_train_model
         
 
-def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
+'''def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
     # Inicializar datos como None
     input_data,datos = [],{}
     # Selección de página
@@ -223,8 +223,80 @@ def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train
     else:
         st.error("### Por favor, ingresa valores válidos para todas las características.")
     #st.write(datos)
-    return input_data,datos
-        
+    return input_data,datos'''
+
+def menu_opciones(modelo, y_pred_model, y_test_model, df, x_train_model, y_train_model):
+    # Inicializar datos como None
+    input_data, datos = [], {}
+
+    # Selección de página
+    page = st.selectbox(
+        "### Selecciona una opción",
+        ["Predicción", 'Grafico de Comparacion en la Prediccion', 'Metricas de Evaluacion del Modelo']
+    )
+
+    # Guardar la opción seleccionada en el estado de sesión
+    st.session_state['opcion_seleccionada'] = page
+
+    if page == 'Metricas de Evaluacion del Modelo':
+        # Calcular métricas de evaluación
+        st.write('### Metricas de Evaluacion del "Modelo Final(VotingRegresor)":\n')
+        mse = mean_squared_error(y_test_model, y_pred_model)
+        r2 = r2_score(y_test_model, y_pred_model)
+        mae = mean_absolute_error(y_test_model, y_pred_model)
+        st.write(f'#### Coeficiente de determinacion(R²): {r2:.4f}')
+        st.write(f'#### Error cuadratico medio(MSE): {mse:.4f}')
+        st.write(f'#### Error absoluto medio(MAE): {mae:.4f}')
+        # Validación Cruzada del modelo Voting
+        r2_scores = cross_val_score(modelo, x_train_model, y_train_model, cv=5, scoring='r2')
+        st.write(f'#### R² promedio en validación cruzada: {r2_scores.mean():.4f}')
+
+    elif page == 'Grafico de Comparacion en la Prediccion':
+        st.write('### Grafico de Comparacion en la Prediccion')
+        # Grafico de Comparacion
+        fig, ax = plt.subplots()
+        ax.plot(df['PesoFinal'], label='Peso Prom. Final (Real)', color='blue')
+        ax.plot(df['Peso Prom Final Predicho'], label='Peso Prom. Final Predicho', color='red')
+        ax.set_xlabel('Índice')
+        ax.set_ylabel('Peso Prom. Final')
+        ax.set_title('Comparación entre Peso Prom. Final Real y Predicho')
+        ax.legend()
+        ax.grid(True)
+        st.pyplot(fig)
+
+        # Varianza
+        varianza = ((df['PesoFinal'] - df['Peso Prom Final Predicho']) ** 2).mean()
+        st.write(f"#### La varianza de los valores es:  {varianza:.4f}")
+
+    elif page == "Predicción":
+        st.title("Aplicación de Prediccion")
+        # Entradas de datos para las características
+        feature_1 = float(st.number_input('Ingresa el valor para PesoSem4', format="%.3f"))
+        feature_2 = float(st.number_input('Ingresa el valor para Agua', format="%.3f"))
+        feature_3 = float(st.number_input('Ingresa el valor para PesoSem3', format="%.3f"))
+        feature_4 = float(st.number_input('Ingresa el valor para ConsumoAcabado', format="%.3f"))
+        feature_5 = float(st.number_input('Ingresa el valor para MortStd', format="%.3f"))
+        created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # Formato más limpio
+        nombre = st.text_input('Ingrese su nombre')
+
+        if feature_1 is not None and feature_2 is not None and feature_3 is not None and feature_4 is not None and feature_5 is not None:
+            # Crear el array con los datos de entrada
+            input_data = np.array([[feature_1, feature_2, feature_3, feature_4, feature_5]])
+            # Diccionario
+            datos = {
+                'peso_sem4': feature_1,
+                'agua': feature_2,
+                'peso_sem3': feature_3,
+                'consumo_acabado': feature_4,
+                'mortalidad_std': feature_5,
+                'created_at': created_at,
+                'nombre': nombre
+            }
+        else:
+            st.error("### Por favor, ingresa valores válidos para todas las características.")
+
+    return input_data, datos
+    
 def prediccion(modelo,input_data,datos):
     prediction = modelo.predict(input_data)
     prediction = round(prediction[0], 2)  # Formato de dos decimales

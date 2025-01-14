@@ -55,6 +55,7 @@ if df is not None:
 
 else:
     st.write("No se ha cargado ningún archivo.")'''
+
 from modelo import subir_archivo, seleccion_variables, modelo_ensemble, menu_opciones, prediccion
 from CRUD_supabase import crear_prediccion, listar_registros, verificar_registros, eliminar_prediccion
 import streamlit as st
@@ -113,5 +114,4 @@ if df is not None:
 
 else:
     st.write("No se ha cargado ningún archivo.")
-
 
