@@ -42,7 +42,7 @@ if df is not None:
                 if st.button('Eliminar'):
                     eliminar_prediccion(prediccion_id)
                         # Actualizar la lista de registros después de eliminar
-                    st.experimental_rerun()
+                    #st.experimental_rerun()
                    
         # Verificar si hay datos disponibles para guardar
         if st.session_state['datos_edit'] is not None:
