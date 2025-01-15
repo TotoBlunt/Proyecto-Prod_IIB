@@ -67,17 +67,32 @@ def eliminar_prediccion(prediccion_id):
     :return: True si la eliminación fue exitosa, False en caso contrario.
     """
     try:
+        # Convertir el ID a entero si no lo es
+        prediccion_id = int(prediccion_id)
+
+        # Validar el valor del ID
+        if prediccion_id <= 0:
+            st.warning("Por favor, ingresa un ID válido mayor a 0.")
+            return False
+
         # Verificar si el registro existe antes de eliminarlo
         response = Client.table('predicciones').select('id_prediction').eq('id_prediction', prediccion_id).execute()
-        
+
         if not response.data:
             st.write(f"Registro con ID {prediccion_id} no encontrado.")
             return False
         
         # Eliminar el registro
-        Client.table('predicciones').delete().eq('id_prediction', prediccion_id).execute()
-        st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")  # Corregido: st.success
+        delete_response = Client.table('predicciones').delete().eq('id_prediction', prediccion_id).execute()
+        if delete_response.error:
+            st.error(f"Error al eliminar la predicción: {delete_response.error['message']}")
+            return False
+
+        st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
         return True
+    except ValueError:
+        st.error("El ID ingresado debe ser un número entero.")
+        return False
     except Exception as e:
-        st.error(f"Error al eliminar la predicción: {e}")
+        st.error(f"Error inesperado: {e}")
         return False
