@@ -68,7 +68,7 @@ def eliminar_prediccion_rpc(prediccion_id):
     """
     try:
         # Llamar a la función RPC
-        response = client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id})
+        response = Client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id})
 
         # Verificar si hubo un error en la respuesta
         if not response.data:
