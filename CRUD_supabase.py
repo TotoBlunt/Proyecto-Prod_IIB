@@ -68,11 +68,11 @@ def eliminar_prediccion_rpc(prediccion_id):
     """
     try:
         # Llamar a la función RPC
-        response = Client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id})
+        response = client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id})
 
-        # Verificar si hubo errores
-        if response.error:
-            st.error(f"Error al eliminar la predicción: {response.error['message']}")
+        # Verificar si hubo un error en la respuesta
+        if not response.data:
+            st.error(f"No se pudo eliminar el registro con ID {prediccion_id}.")
             return False
 
         st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
