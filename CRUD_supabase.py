@@ -59,40 +59,24 @@ def listar_registros():
     except Exception as e:
         st.error(f"Ocurrió un error al listar los registros: {e}")
 
-def eliminar_prediccion(prediccion_id):
+def eliminar_prediccion_rpc(prediccion_id):
     """
-    Elimina una predicción de la base de datos Supabase por su ID.
+    Llama a la función almacenada en Supabase para eliminar un registro por ID.
     
-    :param prediccion_id: ID de la predicción a eliminar.
-    :return: True si la eliminación fue exitosa, False en caso contrario.
+    :param prediccion_id: ID del registro a eliminar.
+    :return: True si se eliminó correctamente, False en caso contrario.
     """
     try:
-        # Convertir el ID a entero si no lo es
-        prediccion_id = int(prediccion_id)
+        # Llamar a la función RPC
+        response = client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id}).execute()
 
-        # Validar el valor del ID
-        if prediccion_id <= 0:
-            st.warning("Por favor, ingresa un ID válido mayor a 0.")
-            return False
-
-        # Verificar si el registro existe antes de eliminarlo
-        response = Client.table('predicciones').select('id_prediction').eq('id_prediction', prediccion_id).execute()
-
-        if not response.data:
-            st.write(f"Registro con ID {prediccion_id} no encontrado.")
-            return False
-        
-        # Eliminar el registro
-        delete_response = Client.table('predicciones').delete().eq('id_prediction', prediccion_id).execute()
-        if delete_response.error:
-            st.error(f"Error al eliminar la predicción: {delete_response.error['message']}")
+        # Verificar si hubo errores
+        if response.error:
+            st.error(f"Error al eliminar la predicción: {response.error['message']}")
             return False
 
         st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
         return True
-    except ValueError:
-        st.error("El ID ingresado debe ser un número entero.")
-        return False
     except Exception as e:
         st.error(f"Error inesperado: {e}")
         return False
