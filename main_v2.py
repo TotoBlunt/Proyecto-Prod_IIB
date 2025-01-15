@@ -53,7 +53,7 @@ if df is not None:
                 if st.button('Eliminar Registro'):
                     if eliminar_prediccion_rpc(prediccion_id):
                         # Actualizar la lista de registros después de eliminar
-                        st.experimental_rerun()
+                        st.rerun()
 
 else:
     st.write("No se ha cargado ningún archivo.")
