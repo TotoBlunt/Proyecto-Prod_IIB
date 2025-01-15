@@ -70,8 +70,8 @@ def eliminar_prediccion_rpc(prediccion_id):
         # Llamar a la función RPC para eliminar el registro
         response = Client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id})
 
-        # Verificar si la respuesta fue exitosa, usando status_code
-        if response.status_code == 200:
+        # Verificar si el código de estado es 200 o 204, que indican éxito
+        if response.status_code in [200, 204]:
             st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
             return True
         else:
