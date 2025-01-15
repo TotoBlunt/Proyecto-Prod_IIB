@@ -51,7 +51,7 @@ if df is not None:
                 
                 # Botón para confirmar la eliminación
                 if st.button('Eliminar Registro'):
-                    if eliminar_prediccion(prediccion_id):
+                    if eliminar_prediccion_rpc(prediccion_id):
                         # Actualizar la lista de registros después de eliminar
                         st.experimental_rerun()
 
