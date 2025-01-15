@@ -67,16 +67,18 @@ def eliminar_prediccion_rpc(prediccion_id):
     :return: True si se eliminó correctamente, False en caso contrario.
     """
     try:
-        # Llamar a la función RPC
+        # Llamar a la función RPC para eliminar el registro
         response = Client.rpc('eliminar_prediccion', {'prediccion_id': prediccion_id})
 
-        # Verificar si hubo un error en la respuesta
-        if not response.data:
-            st.error(f"No se pudo eliminar el registro con ID {prediccion_id}.")
+        # Verificar si la respuesta fue exitosa, usando status_code
+        if response.status_code == 200:
+            st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
+            return True
+        else:
+            # Si no fue exitosa, muestra el código de estado
+            st.error(f"Error al eliminar la predicción. Código de estado: {response.status_code}")
             return False
-
-        st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
-        return True
     except Exception as e:
+        # Captura cualquier excepción inesperada
         st.error(f"Error inesperado: {e}")
         return False
