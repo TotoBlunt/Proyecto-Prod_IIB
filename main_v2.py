@@ -1,5 +1,5 @@
 from modelo import subir_archivo, seleccion_variables, modelo_ensemble, menu_opciones, prediccion
-from CRUD_supabase import crear_prediccion, listar_registros, verificar_registros, eliminar_prediccion
+from CRUD_supabase import crear_prediccion, listar_registros, verificar_registros, eliminar_prediccion_rpc
 import streamlit as st
 from estilos import aplicar_estilos
 
