@@ -14,7 +14,7 @@ with col1:
     st.write("Aquí puedes listar los integrantes del grupo.")
      # Integrante 1
      # URL de la imagen (asegúrate de que sea válida)
-    url_imagen = "https://imgur.com/ZX7HTol"  # Ejemplo de imagen pública
+    url_imagen = "https://i.imgur.com/ZX7HTol.jpeg"  # Ejemplo de imagen pública
 
     # Mostrar la imagen
     st.markdown('<div class="integrante">', unsafe_allow_html=True)
