@@ -14,7 +14,7 @@ with col1:
     st.write("Aquí puedes listar los integrantes del grupo.")
      # Integrante 1
     st.markdown('<div class="integrante">', unsafe_allow_html=True)
-    st.image("https://imgur.com/a/2ZOecMk", caption="Integrante 1", use_column_width=False)
+    st.image("https://imgur.com/a/2ZOecMk", caption="Integrante 1", use_container_width=False)
     st.write("**Toto Blunt**")
     st.markdown('</div>', unsafe_allow_html=True)
     st.write("- Integrante 2")
