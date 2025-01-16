@@ -5,10 +5,19 @@ from estilos import aplicar_estilos
 
 aplicar_estilos()
 
-# Dividir la pantalla en dos secciones
-col1, col2 = st.columns([7, 3])
-# Sección principal (70%)
+# Dividir la pantalla en dos secciones (30% izquierda, 70% derecha)
+col1, col2 = st.columns([3, 7])
+
+# Sección de integrantes del grupo (30% - izquierda)
 with col1:
+    st.title("Integrantes del Grupo")
+    st.write("Aquí puedes listar los integrantes del grupo.")
+    st.write("- Integrante 1")
+    st.write("- Integrante 2")
+    st.write("- Integrante 3")
+
+# Sección principal (70%)
+with col2:
     
     # Título para el app
     st.title("Proyecto Productivo para la predicción del peso de pollos usando variables descritas por el modelo SelectKBest, luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v2)")
@@ -63,10 +72,3 @@ with col1:
     else:
         st.write("No se ha cargado ningún archivo.")
 
-# Sección de integrantes del grupo (30%)
-with col2:
-    st.title("Integrantes del Grupo")
-    st.write("Aquí puedes listar los integrantes del grupo.")
-    st.write("- Integrante 1")
-    st.write("- Integrante 2")
-    st.write("- Integrante 3")
