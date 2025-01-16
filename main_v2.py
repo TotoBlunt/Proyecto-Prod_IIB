@@ -13,8 +13,14 @@ with col1:
     st.title("Integrantes del Grupo")
     st.write("Aquí puedes listar los integrantes del grupo.")
      # Integrante 1
+     # URL de la imagen (asegúrate de que sea válida)
+    url_imagen = "https://imgur.com/ZX7HTol"  # Ejemplo de imagen pública
+
+    # Mostrar la imagen
     st.markdown('<div class="integrante">', unsafe_allow_html=True)
-    st.image("https://imgur.com/ZX7HTol", caption="Integrante 1", use_container_width=False)
+    st.image(url_imagen, caption="https://imgur.com/ZX7HTol", use_container_width=True)
+    
+    #st.image("https://imgur.com/ZX7HTol", caption="Integrante 1", use_container_width=False)
     st.write("**Toto Blunt**")
     st.markdown('</div>', unsafe_allow_html=True)
     st.write("- Integrante 2")
