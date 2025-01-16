@@ -12,7 +12,11 @@ col1, col2 = st.columns([3, 7])
 with col1:
     st.title("Integrantes del Grupo")
     st.write("Aquí puedes listar los integrantes del grupo.")
-    st.write("- Integrante 1")
+     # Integrante 1
+    st.markdown('<div class="integrante">', unsafe_allow_html=True)
+    st.image("https://imgur.com/a/2ZOecMk", caption="Integrante 1", use_column_width=False)
+    st.write("**Toto Blunt**")
+    st.markdown('</div>', unsafe_allow_html=True)
     st.write("- Integrante 2")
     st.write("- Integrante 3")
 
