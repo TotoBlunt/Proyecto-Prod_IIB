@@ -44,7 +44,7 @@ def verificar_registros():
         return False
 
 def listar_registros():
-    st.subheader('Listar todos los registros')
+    st.subheader('Registros:')
     try:
         # Obtener los datos de la tabla 'datos_predicciones'
         response = Client.table('predicciones').select('*').execute()
