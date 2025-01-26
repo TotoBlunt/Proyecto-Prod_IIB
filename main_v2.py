@@ -15,9 +15,9 @@ col1, col2 = st.columns([2, 8])
 # Sección de integrantes del grupo (20% - izquierda)
 with col1:
     st.title("Integrantes del Grupo")
-    st.write("Aquí puedes listar los integrantes del grupo.")
-    url_imagen_1 = "https://i.imgur.com/ZX7HTol.jpeg"  # Ejemplo de imagen pública
-    st.image(url_imagen_1, caption="Integrante Numero 1", use_container_width=True)
+
+   #url_imagen_1 = "https://i.imgur.com/ZX7HTol.jpeg"  # Ejemplo de imagen pública
+   #st.image(url_imagen_1, caption="Integrante Numero 1", use_container_width=True)
     st.write("- Integrante 1")
     st.write("- Integrante 2")
     st.write("- Integrante 3")
