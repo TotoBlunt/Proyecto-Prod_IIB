@@ -68,15 +68,15 @@ with col2:
                 if verificar_registros():
                     if st.button('Listar Registros'):
                         listar_registros()
-                    
-                    # Campo para ingresar el ID a eliminar
-                    prediccion_id =int( st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0))
-                    
-                    # Botón para confirmar la eliminación
-                    if st.button('Eliminar Registro'):
-                        if eliminar_prediccion_rpc(prediccion_id):
-                            # Actualizar la lista de registros después de eliminar
-                            st.rerun()
+                    if st.button('Eliminar'):
+                        # Campo para ingresar el ID a eliminar
+                        prediccion_id =int( st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0))
+                        
+                        # Botón para confirmar la eliminación
+                        if st.button('Eliminar Registro'):
+                            if eliminar_prediccion_rpc(prediccion_id):
+                                # Actualizar la lista de registros después de eliminar
+                                st.rerun()
 
     else:
         st.write("No se ha cargado ningún archivo.")
