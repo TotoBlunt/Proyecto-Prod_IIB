@@ -79,6 +79,7 @@ with col2:
 
                         # Botón para confirmar la eliminación
                         if st.button('Eliminar Registro'):
+                            listar_registros()
                             if prediccion_id > 0:  # Asegurarse de que el ID sea válido
                                 if eliminar_prediccion_rpc(int(prediccion_id)):
                                     st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
