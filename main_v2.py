@@ -3,32 +3,27 @@ from CRUD_supabase import crear_prediccion, listar_registros, verificar_registro
 import streamlit as st
 from estilos import aplicar_estilos
 
+# Configurar el ancho de la página
+st.set_page_config(layout="wide")
+
+# Aplicar estilos personalizados
 aplicar_estilos()
 
-# Dividir la pantalla en dos secciones (30% izquierda, 70% derecha)
-col1, col2 = st.columns([3, 7])
+# Dividir la pantalla en dos secciones (20% izquierda, 80% derecha)
+col1, col2 = st.columns([2, 8])
 
-# Sección de integrantes del grupo (30% - izquierda)
+# Sección de integrantes del grupo (20% - izquierda)
 with col1:
     st.title("Integrantes del Grupo")
     st.write("Aquí puedes listar los integrantes del grupo.")
-     # Integrante 1
-     # URL de la imagen (asegúrate de que sea válida)
     url_imagen_1 = "https://i.imgur.com/ZX7HTol.jpeg"  # Ejemplo de imagen pública
-
-    # Mostrar la imagen
-    #st.markdown('<div class="integrante">', unsafe_allow_html=True)
-    #st.image(url_imagen_1, caption="Integrante Numero 1", use_container_width=True)
-    #st.markdown('</div>', unsafe_allow_html=True)
-
+    st.image(url_imagen_1, caption="Integrante Numero 1", use_container_width=True)
     st.write("- Integrante 1")
     st.write("- Integrante 2")
     st.write("- Integrante 3")
 
-# Sección principal (70%)
+# Sección principal (80%)
 with col2:
-    
-    # Título para el app
     st.title("Proyecto Productivo para la predicción del peso de pollos usando variables descritas por el modelo SelectKBest, luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v2)")
 
     # Estado de sesión para manejar datos entre interacciones
@@ -71,7 +66,7 @@ with col2:
                     if st.button('Eliminar'):
                         listar_registros()
                         # Campo para ingresar el ID a eliminar
-                        prediccion_id =int( st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0))
+                        prediccion_id = int(st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0))
                         
                         # Botón para confirmar la eliminación
                         if st.button('Eliminar Registro'):
@@ -81,4 +76,3 @@ with col2:
 
     else:
         st.write("No se ha cargado ningún archivo.")
-
