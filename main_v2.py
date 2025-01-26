@@ -30,6 +30,10 @@ with col2:
     if 'datos_edit' not in st.session_state:
         st.session_state['datos_edit'] = None
 
+    # Estado para controlar si se ha pulsado "Eliminar"
+    if 'mostrar_campo_id' not in st.session_state:
+        st.session_state['mostrar_campo_id'] = False
+
     # Cargar archivo
     df = subir_archivo()
 
@@ -63,16 +67,26 @@ with col2:
                 if verificar_registros():
                     if st.button('Listar Registros'):
                         listar_registros()
+
+                    # Botón "Eliminar"
                     if st.button('Eliminar'):
-                        listar_registros()
-                        # Campo para ingresar el ID a eliminar
-                        prediccion_id = int(st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0))
-                        
+                        # Cambiar el estado para mostrar el campo de ID
+                        st.session_state['mostrar_campo_id'] = True
+
+                    # Mostrar el campo de ID solo si se ha pulsado "Eliminar"
+                    if st.session_state['mostrar_campo_id']:
+                        prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0)
+
                         # Botón para confirmar la eliminación
                         if st.button('Eliminar Registro'):
-                            if eliminar_prediccion_rpc(prediccion_id):
-                                # Actualizar la lista de registros después de eliminar
-                                st.rerun()
+                            if prediccion_id > 0:  # Asegurarse de que el ID sea válido
+                                if eliminar_prediccion_rpc(int(prediccion_id)):
+                                    st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
+                                    # Reiniciar el estado para ocultar el campo de ID
+                                    st.session_state['mostrar_campo_id'] = False
+                                    st.rerun()  # Recargar la página para actualizar la lista
+                            else:
+                                st.error("Por favor, ingresa un ID válido.")
 
     else:
         st.write("No se ha cargado ningún archivo.")
