@@ -31,8 +31,8 @@ with col2:
         st.session_state['datos_edit'] = None
 
     # Estado para controlar si se ha pulsado "Eliminar"
-    if 'mostrar_campo_id' not in st.session_state:
-        st.session_state['mostrar_campo_id'] = False
+    if 'mostrar_lista_y_campo_id' not in st.session_state:
+        st.session_state['mostrar_lista_y_campo_id'] = False
 
     # Cargar archivo
     df = subir_archivo()
@@ -70,12 +70,16 @@ with col2:
 
                     # Botón "Eliminar"
                     if st.button('Eliminar'):
-                        listar_registros()
-                        # Cambiar el estado para mostrar el campo de ID
-                        st.session_state['mostrar_campo_id'] = True
+                        # Cambiar el estado para mostrar la lista y el campo de ID
+                        st.session_state['mostrar_lista_y_campo_id'] = True
 
-                    # Mostrar el campo de ID solo si se ha pulsado "Eliminar"
-                    if st.session_state['mostrar_campo_id']:
+                    # Mostrar la lista y el campo de ID solo si se ha pulsado "Eliminar"
+                    if st.session_state['mostrar_lista_y_campo_id']:
+                        # Mostrar la lista de predicciones
+                        st.write("Lista de predicciones:")
+                        listar_registros()
+
+                        # Campo para ingresar el ID a eliminar
                         prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0)
 
                         # Botón para confirmar la eliminación
@@ -83,8 +87,8 @@ with col2:
                             if prediccion_id > 0:  # Asegurarse de que el ID sea válido
                                 if eliminar_prediccion_rpc(int(prediccion_id)):
                                     st.success(f"Registro con ID {prediccion_id} eliminado correctamente.")
-                                    # Reiniciar el estado para ocultar el campo de ID
-                                    st.session_state['mostrar_campo_id'] = False
+                                    # Reiniciar el estado para ocultar la lista y el campo de ID
+                                    st.session_state['mostrar_lista_y_campo_id'] = False
                                     st.rerun()  # Recargar la página para actualizar la lista
                             else:
                                 st.error("Por favor, ingresa un ID válido.")
