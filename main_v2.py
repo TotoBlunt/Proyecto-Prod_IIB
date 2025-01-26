@@ -78,6 +78,7 @@ with col2:
                         # Mostrar la lista de predicciones
                         st.write("### Lista de predicciones:")
                         registros = listar_registros()  # Suponiendo que listar_registros() devuelve los registros
+                        registros
 
                         # Campo para ingresar el ID a eliminar
                         prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0)
