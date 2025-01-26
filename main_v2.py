@@ -75,11 +75,8 @@ with col2:
 
                     # Mostrar la lista y el campo de ID solo si se ha pulsado "Eliminar"
                     if st.session_state['mostrar_lista_y_campo_id']:
-                        # Mostrar la lista de predicciones
-                        st.write("### Lista de predicciones:")
-                        registros = listar_registros()  # Suponiendo que listar_registros() devuelve los registros
-                        registros
-
+                
+                        st.subtitle('Lista los Registrospara verificar el ID a eliminar')
                         # Campo para ingresar el ID a eliminar
                         prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0)
 
