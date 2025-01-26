@@ -70,7 +70,7 @@ with col2:
                         listar_registros()
                     
                     # Campo para ingresar el ID a eliminar
-                    prediccion_id =int( st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=1))
+                    prediccion_id =int( st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0))
                     
                     # Botón para confirmar la eliminación
                     if st.button('Eliminar Registro'):
