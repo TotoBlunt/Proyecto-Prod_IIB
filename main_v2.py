@@ -19,10 +19,8 @@ with col1:
     # Mostrar la imagen
     st.markdown('<div class="integrante">', unsafe_allow_html=True)
     st.image(url_imagen, caption="Integrante Numero 1", use_container_width=True)
-    
-    #st.image("https://imgur.com/ZX7HTol", caption="Integrante 1", use_container_width=False)
-    st.write("**Toto Blunt**")
     st.markdown('</div>', unsafe_allow_html=True)
+    
     st.write("- Integrante 2")
     st.write("- Integrante 3")
 
