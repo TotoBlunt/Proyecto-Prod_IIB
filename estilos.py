@@ -3,6 +3,7 @@ import streamlit as st
 
 
 def aplicar_estilos():
+
     st.markdown(
         """
         <style>
