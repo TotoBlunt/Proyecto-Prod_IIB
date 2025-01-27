@@ -31,19 +31,14 @@ def obtener_datos_desde_supabase():
     try:
         # Obtener los datos de la tabla
         response = Client.table(tabla).select("*").execute()
-        st.write("Respuesta de Supabase:", response)  # Depuración
 
         # Crear el DataFrame
         df = pd.DataFrame(response.data)
-        st.write("DataFrame creado:", df)  # Depuración
 
         # Verificar si el DataFrame está vacío
         if df.empty:
             st.error("El DataFrame está vacío.")
             return None
-
-        # Verificar los nombres de las columnas
-        st.write("Columnas del DataFrame:", df.columns.tolist())  # Depuración
 
         # Mostrar los datos
         st.write('### Vista previa de los datos desde Supabase')
