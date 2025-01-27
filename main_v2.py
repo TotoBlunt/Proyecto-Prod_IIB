@@ -36,9 +36,28 @@ with col2:
         st.session_state['mostrar_lista_y_campo_id'] = False
 
     # Cargar archivo
-    df = obtener_datos_desde_supabase()
+    st.title("Cargar datos para predicción")
+    st.write("Selecciona cómo deseas cargar los datos:")
+
+    # Opciones para el usuario
+    opcion = st.radio(
+        "Elige una opción:",
+        ("Subir archivo manualmente", "Cargar datos desde Supabase")
+    )
+
+    # Lógica para manejar la opción seleccionada
+    if opcion == "Subir archivo manualmente":
+        df = subir_archivo()
+    else:
+        df = cargar_datos_desde_supabase()
+
 
     if df is not None:
+        #Datos del Dataframe
+        st.write("### Datos cargados correctamente")
+        st.write("Total de filas:", len(df))
+        st.write("Total de columnas:", len(df.columns))
+
         # Selección de las mejores variables
         top5 = seleccion_variables(df)
         if top5:

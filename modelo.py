@@ -49,7 +49,7 @@ def obtener_datos_desde_supabase():
         st.error(f"Error al obtener datos desde Supabase: {e}")
         return None
 
-'''def subir_archivo():
+def subir_archivo():
     # Subir archivo de excel o csv
     upload_file = st.file_uploader('Sube un archivo Excel o CSV', type=['xlsx', 'csv'])
 
@@ -77,7 +77,7 @@ def obtener_datos_desde_supabase():
             st.error(f"Error inesperado: {e}")
 
     return df
-'''
+
 def seleccion_variables(df):
 
     try:
