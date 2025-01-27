@@ -7,4 +7,3 @@ numpy
 supabase==0.5.3
 datetime
 requests
-pickle
