@@ -51,17 +51,23 @@ streamlit run main.py
 
 ## Uso de la Aplicacion
 
-1. Cargar datos: Sube un archivo CSV/Excel con los datos de los pollos.
+1. Cargar datos: Sube un archivo CSV/Excel con los datos de los pollos o carga directamente desde el SUPABASE.
 
 2. Seleccionar variables: El modelo SelectKBest seleccionará automáticamente las 5 variables más relevantes.
 
-3. Realizar predicciones: Utiliza el modelo de ensamble para predecir el peso de los pollos.
+3. Tendremos 3 Opciones para usar el modelo : Realizar Prediccion, Mostrar Grafico de comparacion en la prediccion y Metricas de Evaluacion del Modelo.
 
-4. Guardar resultados: Los resultados de las predicciones pueden guardarse en Supabase para su posterior consulta.
+4. Realizar predicciones: Utiliza el modelo de ensamble para predecir el peso de los pollos.
 
-5. Grafico de comparación en la predicción: Este gráfico muestra el peso final real vs el peso final predicho para su posterior análisis.
+5. Guardar resultados: Los resultados de las predicciones pueden guardarse en Supabase para su posterior consulta.
 
-6. Metricas de Evaluación del Modelo: Este apartado nos muestra las metricas de evaluación mas importantes del modelo tales como el error cuadratico medio(MSE),error absoluto medio(MAE), coeficiente de determinacion (r2), y el promedio de r2 en validacion cruzada.
+6. Mostrar resultados: Se mostraran los resultados de las predicciones previamente guardados en la base de datos en SUPABASE.
+
+8. Eliminar: Para eliminar los registros usaremos el ID, para verificar los Id daremos click en mostrar y seleccionaremos los 
+
+9. Grafico de comparación en la predicción: Este gráfico muestra el peso final real vs el peso final predicho para su posterior análisis.
+
+10. Metricas de Evaluación del Modelo: Este apartado nos muestra las metricas de evaluación mas importantes del modelo tales como el error cuadratico medio(MSE),error absoluto medio(MAE), coeficiente de determinacion (r2), y el promedio de r2 en validacion cruzada.
 
 ## Contribuciones
 
