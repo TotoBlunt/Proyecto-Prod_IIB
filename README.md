@@ -39,9 +39,9 @@ requests
 
 Desde el cmd:
 
-git clone https://github.com/tu-usuario/tu-repositorio.git
+git clone https://github.com/TotoBlunt/Proyecto-Prod_IIB.git
 
-cd tu-repositorio
+cd https://github.com/TotoBlunt/Proyecto-Prod_IIB.git
 
 ## Ejecutar la Aplicacion
 
@@ -51,7 +51,7 @@ streamlit run main.py
 
 ## Uso de la Aplicacion
 
-1. Cargar datos: Sube un archivo CSV con los datos de los pollos.
+1. Cargar datos: Sube un archivo CSV/Excel con los datos de los pollos.
 
 2. Seleccionar variables: El modelo SelectKBest seleccionará automáticamente las 5 variables más relevantes.
 
