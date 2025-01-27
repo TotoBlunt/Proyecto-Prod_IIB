@@ -30,7 +30,7 @@ def obtener_datos_desde_supabase():
 
     # Obtener los datos de la tabla
     try:
-        response = supabase.table(tabla).select("*").execute()
+        response = Client.table(tabla).select("*").execute()
         df = pd.DataFrame(response.data)
         st.write('### Vista previa de los datos desde Supabase')
         st.write(df.head())
