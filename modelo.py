@@ -18,6 +18,7 @@ from datetime import datetime
 from CRUD_supabase import crear_prediccion
 import json
 from supabase_connector import inicializar_supabase
+import pickle
 
 Client = inicializar_supabase()
 
@@ -298,6 +299,17 @@ def prediccion(modelo,input_data,datos):
     #st.write(datos)
     return datos  
         
-
+def guardar_modelo(modelo,ruta):
+    """
+    Se guardara el modelo creado en un pkl para su futura 
+    utilizacion, donde indicaras como parametro el modelo entrenado
+    y la ruta que le daras para su futura utilizacion
+    """
+    with open(ruta, 'wb') as archivo:
+        pickle.dump(modelo, archivo)
         
+def cargar_modelo(ruta):
+    """Carga un modelo desde un archivo .pkl  indicada como parametro de la funcion"""
+    with open(ruta, 'rb') as archivo:
+        return pickle.load(archivo)
    
