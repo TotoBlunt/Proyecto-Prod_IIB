@@ -30,7 +30,7 @@ def obtener_datos_desde_supabase():
 
     try:
         # Obtener los datos de la tabla
-        response = supabase.table(tabla).select("*").execute()
+        response = Client.table(tabla).select("*").execute()
         st.write("Respuesta de Supabase:", response)  # Depuración
 
         # Crear el DataFrame
