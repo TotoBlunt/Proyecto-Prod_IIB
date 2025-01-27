@@ -18,9 +18,10 @@ with col1:
 
    #url_imagen_1 = "https://i.imgur.com/ZX7HTol.jpeg"  # Ejemplo de imagen pública
    #st.image(url_imagen_1, caption="Integrante Numero 1", use_container_width=True)
-    st.write("- Integrante 1")
-    st.write("- Integrante 2")
-    st.write("- Integrante 3")
+    st.write("- Jhon Max Lozano Sulluchuco")
+    st.write("- Jhon Max Lozano Sulluchuco")
+    st.write("- Elvis Alberto Portilla Flores")
+    st.write("- Jose Antonio Longa Mendoza")
 
 # Sección principal (80%)
 with col2:
@@ -70,13 +71,13 @@ with col2:
 
                     # Botón "Eliminar"
                     if st.button('Eliminar'):
+                        st.write('Lista los Registros para verificar el ID a eliminar')
                         # Cambiar el estado para mostrar la lista y el campo de ID
                         st.session_state['mostrar_lista_y_campo_id'] = True
 
                     # Mostrar la lista y el campo de ID solo si se ha pulsado "Eliminar"
                     if st.session_state['mostrar_lista_y_campo_id']:
                 
-                        st.write('Lista los Registrospara verificar el ID a eliminar')
                         # Campo para ingresar el ID a eliminar
                         prediccion_id = st.number_input("Ingresa el ID del registro que deseas eliminar:", min_value=0)
 
