@@ -1,4 +1,4 @@
-from modelo import subir_archivo, seleccion_variables, modelo_ensemble, menu_opciones, prediccion
+from modelo import obtener_datos_desde_supabase, seleccion_variables, modelo_ensemble, menu_opciones, prediccion
 from CRUD_supabase import crear_prediccion, listar_registros, verificar_registros, eliminar_prediccion_rpc
 import streamlit as st
 from estilos import aplicar_estilos
@@ -36,7 +36,7 @@ with col2:
         st.session_state['mostrar_lista_y_campo_id'] = False
 
     # Cargar archivo
-    df = subir_archivo()
+    df = obtener_datos_desde_supabase()
 
     if df is not None:
         # Selección de las mejores variables
