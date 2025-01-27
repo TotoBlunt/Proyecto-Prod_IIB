@@ -1,4 +1,4 @@
-from modelo import obtener_datos_desde_supabase, seleccion_variables, modelo_ensemble, menu_opciones, prediccion
+from modelo import obtener_datos_desde_supabase, seleccion_variables, modelo_ensemble, menu_opciones, prediccion,subir_archivo
 from CRUD_supabase import crear_prediccion, listar_registros, verificar_registros, eliminar_prediccion_rpc
 import streamlit as st
 from estilos import aplicar_estilos
@@ -40,7 +40,7 @@ with col2:
     st.write("Selecciona cómo deseas cargar los datos:")
 
     # Opciones para el usuario
-    opcion = st.radio(
+    opcion = st.selectbox(
         "Elige una opción:",
         ("Subir archivo manualmente", "Cargar datos desde Supabase")
     )
@@ -49,7 +49,7 @@ with col2:
     if opcion == "Subir archivo manualmente":
         df = subir_archivo()
     else:
-        df = cargar_datos_desde_supabase()
+        df = obtener_datos_desde_supabase()
 
 
     if df is not None:
