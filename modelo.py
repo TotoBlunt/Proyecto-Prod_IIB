@@ -28,12 +28,27 @@ def obtener_datos_desde_supabase():
     # Nombre de la tabla de Supabase
     tabla = 'DatosPredicciones'
 
-    # Obtener los datos de la tabla
     try:
-        response = Client.table(tabla).select("*").execute()
+        # Obtener los datos de la tabla
+        response = supabase.table(tabla).select("*").execute()
+        st.write("Respuesta de Supabase:", response)  # Depuración
+
+        # Crear el DataFrame
         df = pd.DataFrame(response.data)
+        st.write("DataFrame creado:", df)  # Depuración
+
+        # Verificar si el DataFrame está vacío
+        if df.empty:
+            st.error("El DataFrame está vacío.")
+            return None
+
+        # Verificar los nombres de las columnas
+        st.write("Columnas del DataFrame:", df.columns.tolist())  # Depuración
+
+        # Mostrar los datos
         st.write('### Vista previa de los datos desde Supabase')
         st.write(df.head())
+
         return df
     except Exception as e:
         st.error(f"Error al obtener datos desde Supabase: {e}")
