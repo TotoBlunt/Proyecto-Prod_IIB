@@ -17,13 +17,29 @@ import numpy as np
 from datetime import datetime
 from CRUD_supabase import crear_prediccion
 import json
+from supabase_connector import inicializar_supabase
 
-
+Client = inicializar_supabase()
 
 #Titulo para el app
 st.title("Proyecto Productivo para la prediccion del peso de pollos usando variables descritas por el modelo SelectcKbest luego hacer las predicciones usando el Modelo Ensemble, con Streamlit(v1)")
 
-def subir_archivo():
+def obtener_datos_desde_supabase():
+    # Nombre de la tabla de Supabase
+    tabla = 'DatosPredicciones'
+
+    # Obtener los datos de la tabla
+    try:
+        response = supabase.table(tabla).select("*").execute()
+        df = pd.DataFrame(response.data)
+        st.write('### Vista previa de los datos desde Supabase')
+        st.write(df.head())
+        return df
+    except Exception as e:
+        st.error(f"Error al obtener datos desde Supabase: {e}")
+        return None
+
+'''def subir_archivo():
     # Subir archivo de excel o csv
     upload_file = st.file_uploader('Sube un archivo Excel o CSV', type=['xlsx', 'csv'])
 
@@ -51,7 +67,7 @@ def subir_archivo():
             st.error(f"Error inesperado: {e}")
 
     return df
-
+'''
 def seleccion_variables(df):
 
     try:
