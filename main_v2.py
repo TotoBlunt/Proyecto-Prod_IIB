@@ -116,5 +116,5 @@ def ejecutar():
         else:
             st.write("No se ha cargado ningún archivo.")
 
-if __name__ == "main":
+if __name__ == "__main__":
     ejecutar()
